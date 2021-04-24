@@ -23,14 +23,12 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePos = getMousePos();
         float vInput = Input.GetAxis("Vertical");
         float hInput = Input.GetAxis("Horizontal");
-        bool q = Input.GetKey(KeyCode.Q);
-        bool e = Input.GetKey(KeyCode.E);
+        bool rotL = Input.GetKey(KeyCode.A);
+        bool rotR = Input.GetKey(KeyCode.D);
+        bool spaceDown = Input.GetKeyDown(KeyCode.Space);
+        bool spaceUp = Input.GetKeyUp(KeyCode.Space);
 
-        //Movement
-        if (movement.useMouseRotation())
-            movement.rotatePlayer(mousePos);
-        else
-            movement.rotatePlayer(q, e);
-        movement.movePlayer(vInput, hInput);
+
+        movement.move(mousePos, rotL, rotR, vInput, hInput, spaceDown, spaceUp);
     }
 }
