@@ -18,6 +18,14 @@ public class PlayerController : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
 
+    void resolveCollisions() {
+
+    }
+
+    private void FixedUpdate() {
+        resolveCollisions();
+    }
+
     void Update()
     {
         Vector3 mousePos = getMousePos();

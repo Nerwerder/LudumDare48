@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 1297194315399147283}
   - component: {fileID: 1297194315399147281}
   - component: {fileID: 1297194315399147295}
+  - component: {fileID: 6733543625910751510}
   - component: {fileID: 1297194315399147280}
   m_Layer: 0
   m_Name: SpaceShip
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +125,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d9c11dc963de34ab49517f83fd9091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6733543625910751510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297194315399147284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c859722a80c7e544c9acb3a5172b2701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1297194315399147280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateTowardsMouse: 0
-  rotationSpeed: 5
-  movementSpeedForward: 6
-  movementSpeedSideways: 3
+  rotationSpeed: 2
+  movementSpeedForward: 8
+  movementSpeedSideways: 4
+  chargePrepTime: 0.1
+  chargeSpeed: 40
+  chargeDuration: 0.35
+  chargeCoolDown: 0.6

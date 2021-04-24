@@ -16,27 +16,23 @@ public class PlayerMovement : MonoBehaviour
     public float chargeDuration = 0.2f;
     public float chargeCoolDown = 0.5f;
 
-    enum MovementState
-    {
-        moving,
-        chargePrep,
-        charge
-    }
-    private MovementState movementState = MovementState.moving;
     private float chargePrepTimer = 0f;
     private float chargeTimer = 0f;
     private float chargeCoolDownTimer = 0f;
+    private PlayerState state;
+
     void Start()
     {
-        //Nothing
+        state = GetComponent<PlayerState>();
+        Assert.IsNotNull(state);
     }
 
     void Update() { 
-        switch(movementState) {
-            case MovementState.chargePrep:
+        switch(state.movementState) {
+            case PlayerState.MovementState.chargePrep:
                 chargePrepTimer += Time.deltaTime;
                 break;
-            case MovementState.charge:
+            case PlayerState.MovementState.charge:
                 chargeTimer += Time.deltaTime;
                 break;
             default:
@@ -73,28 +69,28 @@ public class PlayerMovement : MonoBehaviour
         if (!start && !end)
             return;
         if (start) {
-            if ((movementState == MovementState.moving) && (chargeCoolDownTimer >= chargeCoolDown)) {
-                movementState = MovementState.chargePrep;
+            if ((state.movementState == PlayerState.MovementState.moving) && (chargeCoolDownTimer >= chargeCoolDown)) {
+                state.movementState = PlayerState.MovementState.chargePrep;
                 chargeCoolDownTimer = 0;
             }
         } else if (end) {
-            if ((movementState == MovementState.chargePrep) && (chargePrepTimer >= chargePrepTime)) {
-                movementState = MovementState.charge;
+            if ((state.movementState == PlayerState.MovementState.chargePrep) && (chargePrepTimer >= chargePrepTime)) {
+                state.movementState = PlayerState.MovementState.charge;
                 chargePrepTimer = 0;
             }
         }
     }
 
     public void move(float forward, float sideways) {
-        switch (movementState) {
-            case MovementState.charge:
+        switch (state.movementState) {
+            case PlayerState.MovementState.charge:
                 if(chargeTimer >= chargeDuration) {
-                    movementState = MovementState.moving;
+                    state.movementState = PlayerState.MovementState.moving;
                     chargeTimer = 0;
                 }
                 transform.position += transform.right * Time.deltaTime * chargeSpeed;
                 break;
-            case MovementState.moving:
+            case PlayerState.MovementState.moving:
                 if (forward != 0f) {
                     transform.position += transform.right * Time.deltaTime * forward * movementSpeedForward;
                 }
