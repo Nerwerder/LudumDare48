@@ -96,24 +96,29 @@ public class PlayerMovement : MonoBehaviour
                 if (chargeTimer >= chargeDuration) {
                     state.movementState = PlayerState.MovementState.moving;
                     chargeTimer = 0;
-                    
                 }
                 rb.AddForce((Vector2)transform.right * Time.deltaTime * chargeForce);
+                anim.setBackWardsEngineState(PlayerAnimation.EngineState.charge);
                 break;
             case PlayerState.MovementState.moving:
+                if (forward > 0)
+                    anim.setBackWardsEngineState(PlayerAnimation.EngineState.on);
+                else
+                    anim.setBackWardsEngineState(PlayerAnimation.EngineState.off);
                 if (forward != 0f) {
                     rb.AddForce((Vector2)transform.right * Time.deltaTime * forward * movementForceForward);
-                    if(forward > 0) 
-                        anim.setBackWardsEngineState(true);
-                    else
-                        anim.setBackWardsEngineState(false);
-                } else {
-                    anim.setBackWardsEngineState(false);
                 }
                 if (sideways != 0f) {
                     rb.AddForce((Vector2)transform.up * Time.deltaTime * -sideways * movementForceSideways);
                 }
                 break;
+            default:
+                anim.setBackWardsEngineState(PlayerAnimation.EngineState.off);
+                break;
         }
+    }
+
+    public void addExternalForce(Vector2 force) {
+        rb.AddForce(force);
     }
 }

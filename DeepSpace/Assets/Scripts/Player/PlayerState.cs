@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerState : MonoBehaviour
 {
@@ -17,17 +18,19 @@ public class PlayerState : MonoBehaviour
     }
 
     //Life
-    public int hullPoints = 1;
+    public int hullPoints = 5;
     public int shieldPoints = 0;
 
     void Start()
-    {
-        
+    {    
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+    }  
+    
+    public void takeDamage(int dmg) {
+        hullPoints -= dmg;
     }
+       
 }

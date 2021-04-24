@@ -6,10 +6,13 @@ using UnityEngine.Assertions;
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovement movement;
+    private PlayerState state;
     void Start()
     {
         movement = GetComponent<PlayerMovement>();
         Assert.IsNotNull(movement);
+        state = GetComponent<PlayerState>();
+        Assert.IsNotNull(state);
     }
     Vector3 getMousePos() {
         //Get the Mouse (look) Position
@@ -19,15 +22,19 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log("OnCollisionEnter2D");
+        if (collision.collider.CompareTag("Interactable")) {
+            Interactable interactable = collision.gameObject.GetComponent<Interactable>();
+            Assert.IsNotNull(interactable);
+            interactable.interact(gameObject, collision);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision) {
-        Debug.Log("OnCollisionStay2D");
+        //Nothing
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
-        Debug.Log("OnCollisionExit2D");
+
     }
 
     void Update()
