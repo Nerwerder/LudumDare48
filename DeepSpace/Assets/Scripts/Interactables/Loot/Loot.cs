@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public class Loot : Interactable
 {
+    public int metalValue = 1;
     public float speed = 10f;
     private bool active = false;
     private Transform player = null;
@@ -16,6 +17,7 @@ public class Loot : Interactable
 
     public override void interact(GameObject other) {
         lootParent.deregisterInactiveLoot(gameObject.GetComponent<Loot>());
+        other.GetComponent<PlayerState>().addMetal(metalValue);
         Destroy(gameObject);
     }
 
