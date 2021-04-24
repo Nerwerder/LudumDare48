@@ -18,12 +18,16 @@ public class PlayerController : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
 
-    void resolveCollisions() {
-
+    private void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log("OnCollisionEnter2D");
     }
 
-    private void FixedUpdate() {
-        resolveCollisions();
+    private void OnCollisionStay2D(Collision2D collision) {
+        Debug.Log("OnCollisionStay2D");
+    }
+
+    private void OnCollisionExit2D(Collision2D collision) {
+        Debug.Log("OnCollisionExit2D");
     }
 
     void Update()

@@ -8,11 +8,11 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool rotateTowardsMouse = true;
     public float rotationSpeed = 5f;
-    public float movementSpeedForward = 3f;
-    public float movementSpeedSideways = 2f;
+    public float movementForceForward = 500f;
+    public float movementForceSideways = 300f;
 
     public float chargePrepTime = 0.1f;
-    public float chargeSpeed = 15f;
+    public float chargeForce = 3000f;
     public float chargeDuration = 0.2f;
     public float chargeCoolDown = 0.5f;
 
@@ -20,11 +20,17 @@ public class PlayerMovement : MonoBehaviour
     private float chargeTimer = 0f;
     private float chargeCoolDownTimer = 0f;
     private PlayerState state;
+    private PlayerAnimation anim;
+    private Rigidbody2D rb;
 
     void Start()
     {
         state = GetComponent<PlayerState>();
         Assert.IsNotNull(state);
+        rb = GetComponent<Rigidbody2D>();
+        Assert.IsNotNull(rb);
+        anim = GetComponent<PlayerAnimation>();
+        Assert.IsNotNull(anim);
     }
 
     void Update() { 
@@ -52,19 +58,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void rotate(Vector3 mousePos) {
         Vector3 tDir = mousePos - transform.position;
-        float angle = Mathf.Atan2(tDir.y, tDir.x) * Mathf.Rad2Deg;
-        Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rot, (rotationSpeed * Time.deltaTime));
+        rotateTo(tDir);
     }
 
     public void rotate(bool left, bool right) {
         if(left == right)  //If both ot zero keys are pressed, do nothing
             return;
         Vector3 tDir = left ? transform.up : -transform.up;
+        rotateTo(tDir);
+    }
+
+    private void rotateTo(Vector3 tDir) {
         float angle = Mathf.Atan2(tDir.y, tDir.x) * Mathf.Rad2Deg;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rot, (rotationSpeed * Time.deltaTime));
-    }
+    }    
+
     public void checkChargeState(bool start, bool end) {
         if (!start && !end)
             return;
@@ -84,18 +93,25 @@ public class PlayerMovement : MonoBehaviour
     public void move(float forward, float sideways) {
         switch (state.movementState) {
             case PlayerState.MovementState.charge:
-                if(chargeTimer >= chargeDuration) {
+                if (chargeTimer >= chargeDuration) {
                     state.movementState = PlayerState.MovementState.moving;
                     chargeTimer = 0;
+                    
                 }
-                transform.position += transform.right * Time.deltaTime * chargeSpeed;
+                rb.AddForce((Vector2)transform.right * Time.deltaTime * chargeForce);
                 break;
             case PlayerState.MovementState.moving:
                 if (forward != 0f) {
-                    transform.position += transform.right * Time.deltaTime * forward * movementSpeedForward;
+                    rb.AddForce((Vector2)transform.right * Time.deltaTime * forward * movementForceForward);
+                    if(forward > 0) 
+                        anim.setBackWardsEngineState(true);
+                    else
+                        anim.setBackWardsEngineState(false);
+                } else {
+                    anim.setBackWardsEngineState(false);
                 }
                 if (sideways != 0f) {
-                    transform.position += transform.up * Time.deltaTime * -sideways * movementSpeedSideways;
+                    rb.AddForce((Vector2)transform.up * Time.deltaTime * -sideways * movementForceSideways);
                 }
                 break;
         }
