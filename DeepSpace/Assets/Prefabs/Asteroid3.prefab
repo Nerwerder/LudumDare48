@@ -377,3 +377,7 @@ MonoBehaviour:
   lifePoints: 2
   collisionDamage: 1
   collisionForce: 40
+  loot: {fileID: 5876535783025252506, guid: f6bb37346f7724646a870c6bfe96edcc, type: 3}
+  minLoot: 3
+  maxLoot: 7
+  lootOffset: 4
