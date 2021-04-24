@@ -28976,6 +28976,7 @@ GameObject:
   - component: {fileID: 6763075400988580675}
   - component: {fileID: 1344764455172400458}
   - component: {fileID: 6763075400988580684}
+  - component: {fileID: 6140439834960962784}
   - component: {fileID: 3602545087970988218}
   - component: {fileID: 1463045239}
   - component: {fileID: 3941595268077647122}
@@ -29097,9 +29098,23 @@ MonoBehaviour:
   movementForceForward: 800
   movementForceSideways: 400
   chargePrepTime: 0.1
-  chargeForce: 6000
-  chargeDuration: 0.6
-  chargeCoolDown: 0.6
+  chargeForce: 5000
+  chargeDuration: 1
+  chargeCoolDown: 1
+--- !u!114 &6140439834960962784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763075400988580680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4433ae990418ad24e912897f805f0e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectCoolDown: 2
+  collectRange: 40
 --- !u!114 &3602545087970988218
 MonoBehaviour:
   m_ObjectHideFlags: 0

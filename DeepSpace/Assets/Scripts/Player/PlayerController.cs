@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovement movement;
+    private PlayerActions actions;
     private PlayerState state;
     void Start()
     {
@@ -13,7 +14,10 @@ public class PlayerController : MonoBehaviour
         Assert.IsNotNull(movement);
         state = GetComponent<PlayerState>();
         Assert.IsNotNull(state);
+        actions = GetComponent<PlayerActions>();
+        Assert.IsNotNull(actions);
     }
+
     Vector3 getMousePos() {
         //Get the Mouse (look) Position
         Vector3 mousePos = Input.mousePosition;
@@ -29,12 +33,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Interactable")) {
+            Interactable interactable = collision.gameObject.GetComponent<Interactable>();
+            Assert.IsNotNull(interactable);
+            interactable.interact(gameObject);
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D collision) {
         //Nothing
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
-
+        //Nothing
     }
 
     void Update()
@@ -46,8 +58,10 @@ public class PlayerController : MonoBehaviour
         bool rotR = Input.GetKey(KeyCode.D);
         bool spaceDown = Input.GetKeyDown(KeyCode.Space);
         bool spaceUp = Input.GetKeyUp(KeyCode.Space);
-
+        bool collectLoot = Input.GetKeyDown(KeyCode.C);
 
         movement.move(mousePos, rotL, rotR, vInput, hInput, spaceDown, spaceUp);
+        if (collectLoot)
+            actions.collectLoot();
     }
 }
