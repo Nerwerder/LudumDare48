@@ -29079,8 +29079,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c859722a80c7e544c9acb3a5172b2701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hullPoints: 1
+  hullPoints: 10
+  maxHullPoints: 10
   shieldPoints: 0
+  maxShieldPoints: 5
+  metal: 0
+  maxMetal: 100
 --- !u!114 &6763075400988580684
 MonoBehaviour:
   m_ObjectHideFlags: 0
