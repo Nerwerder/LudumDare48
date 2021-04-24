@@ -14459,12 +14459,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6763075400988580686}
   - component: {fileID: 6763075400988580687}
-  - component: {fileID: 6763075400988580685}
   - component: {fileID: 6763075400988580675}
   - component: {fileID: 1344764455172400458}
   - component: {fileID: 6763075400988580684}
   - component: {fileID: 3602545087970988218}
   - component: {fileID: 1463045239}
+  - component: {fileID: 3941595268077647122}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Player
@@ -14542,32 +14542,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6763075400988580685
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6763075400988580680}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.092601776, y: 0.08231306}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 11.31, y: 8.44}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.805471, y: 5.042447}
-  m_EdgeRadius: 0
 --- !u!114 &6763075400988580675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14608,10 +14582,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateTowardsMouse: 0
   rotationSpeed: 2
-  movementForceForward: 600
-  movementForceSideways: 300
+  movementForceForward: 800
+  movementForceSideways: 400
   chargePrepTime: 0.1
-  chargeForce: 6000
+  chargeForce: 8000
   chargeDuration: 0.35
   chargeCoolDown: 0.6
 --- !u!114 &3602545087970988218
@@ -14626,6 +14600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fff158b35beeb2468383397131a5201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backwardsEngines:
+  - {fileID: 5745618833456444963}
+  - {fileID: 5745618833188340301}
+  - {fileID: 5745618834518850907}
 --- !u!50 &1463045239
 Rigidbody2D:
   serializedVersion: 4
@@ -14639,7 +14617,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0.7
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -14647,6 +14625,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &3941595268077647122
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763075400988580680}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.33894068, y: 0.084729165}
+  m_Size: {x: 12.157497, y: 5.9885597}
+  m_Direction: 1
 --- !u!1001 &5318541311839832470
 PrefabInstance:
   m_ObjectHideFlags: 0
