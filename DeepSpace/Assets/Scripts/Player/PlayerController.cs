@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerMovement movement;
-    private PlayerActions actions;
-    private PlayerState state;
+    PlayerMovement movement;
+    PlayerActions actions;
+    PlayerState state;
+    FollowerCamera fCamera;
+
     void Start()
     {
         movement = GetComponent<PlayerMovement>();
@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
         Assert.IsNotNull(state);
         actions = GetComponent<PlayerActions>();
         Assert.IsNotNull(actions);
+        fCamera = FindObjectOfType<FollowerCamera>();
+        Assert.IsNotNull(fCamera);
     }
 
     Vector3 getMousePos() {
@@ -52,16 +54,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector3 mousePos = getMousePos();
-        float vInput = Input.GetAxis("Vertical");
-        float hInput = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+        float zoom = Input.GetAxis("Mouse ScrollWheel");
         bool rotL = Input.GetKey(KeyCode.A);
         bool rotR = Input.GetKey(KeyCode.D);
         bool spaceDown = Input.GetKeyDown(KeyCode.Space);
         bool spaceUp = Input.GetKeyUp(KeyCode.Space);
         bool collectLoot = Input.GetKeyDown(KeyCode.C);
 
-        movement.move(mousePos, rotL, rotR, vInput, hInput, spaceDown, spaceUp);
-        if (collectLoot)
+
+        movement.move(mousePos, rotL, rotR, vertical, horizontal, spaceDown, spaceUp);
+        if(collectLoot)
             actions.collectLoot();
+        if (zoom != 0)
+            fCamera.zoom(zoom);
     }
 }
