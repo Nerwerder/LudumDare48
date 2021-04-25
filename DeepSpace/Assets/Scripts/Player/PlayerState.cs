@@ -58,8 +58,15 @@ public class PlayerState : MonoBehaviour
     }  
     
     public void takeDamage(int dmg) {
-        hullPoints -= dmg;
-        updateText();
+        switch(movementState) {
+            case MovementState.charge:
+                //Nothing
+                break;
+            default:
+                hullPoints -= dmg;
+                updateText();
+                break;
+        }
     }
 
     public bool addMetal(int mtl) {

@@ -98,3 +98,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   smoothSpeed: 5
+  zoomFactor: 7
