@@ -14,8 +14,6 @@ public class Spawner : MonoBehaviour
 
     bool needsRespawn = true;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine("SpawnObjects");
@@ -23,20 +21,20 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnObjects()
     {
-        while(true)
+        while (true)
         {
 
-           for(int j = currentObjects.Count-1; j > -1 ; j--)
+            for (int j = currentObjects.Count - 1; j > -1; j--)
             {
                 if (currentObjects[j] == null)
                 {
                     currentObjects.RemoveAt(j);
                 }
-                    
+
             }
 
 
-            if(needsRespawn)
+            if (needsRespawn)
             {
                 for (int i = 0; i < spawnAmount; i++)
                 {
@@ -50,7 +48,7 @@ public class Spawner : MonoBehaviour
 
                     Vector3 spawnPos = new Vector3(x, y, 0);
                     Collider2D collisons = Physics2D.OverlapCircle(spawnPos, 8);
-                    if( collisons == false)
+                    if (collisons == false)
                     {
                         currentObjects.Add(Instantiate(spawnables[(int)(Random.value * spawnables.Count)], spawnPos, Quaternion.identity, transform));
                     }
