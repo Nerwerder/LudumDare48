@@ -12,6 +12,8 @@ public class Asteroid : Interactable
     public int maxLoot = 7;
     public float lootOffset = 4f;
 
+    public GameObject explosionPrefab;
+
     LootParent lootParent;
     float rotationSpeed = 0f;
 
@@ -37,6 +39,7 @@ public class Asteroid : Interactable
                     var g = Instantiate(lootPrefab, ((Vector2)transform.position + offset), Quaternion.identity, lootParent.transform);
                     lootParent.registerInactiveLoot(g.GetComponent<Loot>());
                 }
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
                 break;
             default:
