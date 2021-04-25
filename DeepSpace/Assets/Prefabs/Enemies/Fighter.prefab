@@ -150,3 +150,4 @@ MonoBehaviour:
   movementForce: 800
   collisionDamage: 2
   destroyedAfterCollision: 1
+  destroyAnim: {fileID: 245144246084838184, guid: dd7929a61b67879418e0bf04d5aa83c7, type: 3}

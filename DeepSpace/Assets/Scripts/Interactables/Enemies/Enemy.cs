@@ -9,6 +9,8 @@ public abstract class Enemy : Interactable
     public int collisionDamage = 2;
     public bool destroyedAfterCollision = false;
 
+    public GameObject destroyAnim;
+
     protected Transform target;
     protected Rigidbody2D rb;
 
@@ -19,11 +21,16 @@ public abstract class Enemy : Interactable
         state.takeDamage(collisionDamage);
         switch (state.movementState) {
             case PlayerState.MovementState.charge:
+                Instantiate(destroyAnim, transform.position, Quaternion.identity);
                 Destroy(gameObject);
                 break;
             default:
                 if (destroyedAfterCollision)
+                {
+                    Instantiate(destroyAnim, transform.position, Quaternion.identity);
                     Destroy(gameObject);
+                }
+                    
                 break;
         }
     }

@@ -181,6 +181,7 @@ MonoBehaviour:
   movementForce: 300
   collisionDamage: 1
   destroyedAfterCollision: 0
+  destroyAnim: {fileID: 245144246084838184, guid: dd7929a61b67879418e0bf04d5aa83c7, type: 3}
   weapon: {fileID: 1377312667}
   minWeaponCoolDown: 1
   maxWeaponCoolDown: 2
