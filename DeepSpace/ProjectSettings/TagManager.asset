@@ -45,3 +45,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: SpaceShip
+    uniqueID: 3142713363
+    locked: 0
