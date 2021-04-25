@@ -79,18 +79,16 @@ public class PlayerMovement : MonoBehaviour
         if (!start && !end)
             return;
         if (start) {
-            if ((state.movementState == PlayerState.MovementState.moving) && (chargeCoolDownTimer >= chargeCoolDown)) {
+            if (chargeCoolDownTimer >= chargeCoolDown) {
                 state.movementState = PlayerState.MovementState.chargePrep;
                 chargeCoolDownTimer = 0;
             }
         } else if (end) {
-            if ((state.movementState == PlayerState.MovementState.chargePrep) && 
-                (chargePrepTimer >= chargePrepTime) &&
-                (state.fuel > chargeFuelCost)) {
+            if ((state.movementState == PlayerState.MovementState.chargePrep) && (chargePrepTimer >= chargePrepTime) && (state.fuel > chargeFuelCost)) {
                 state.movementState = PlayerState.MovementState.charge;
                 state.fuel -= chargeFuelCost;
             } else {
-                state.movementState = PlayerState.MovementState.moving;
+                state.movementState = PlayerState.MovementState.idle;
             }
             chargePrepTimer = 0;
         }
@@ -100,17 +98,20 @@ public class PlayerMovement : MonoBehaviour
         switch (state.movementState) {
             case PlayerState.MovementState.charge:
                 if (chargeTimer >= chargeDuration) {
-                    state.movementState = PlayerState.MovementState.moving;
+                    state.movementState = PlayerState.MovementState.idle;
                     chargeTimer = 0;
                 }
                 rb.AddForce((Vector2)transform.right * Time.deltaTime * chargeForce);
-                anim.setBackWardsEngineState(PlayerAnimation.EngineState.charge);
                 break;
-            case PlayerState.MovementState.moving:
+            case PlayerState.MovementState.idle:
+            case PlayerState.MovementState.moving_forwards:
+            case PlayerState.MovementState.moving_backwards:
                 if (forward > 0)
-                    anim.setBackWardsEngineState(PlayerAnimation.EngineState.on);
+                    state.movementState = PlayerState.MovementState.moving_forwards;
+                else if (forward < 0)
+                    state.movementState = PlayerState.MovementState.moving_backwards;
                 else
-                    anim.setBackWardsEngineState(PlayerAnimation.EngineState.off);
+                    state.movementState = PlayerState.MovementState.idle;
                 if (forward != 0f) {
                     rb.AddForce((Vector2)transform.right * Time.deltaTime * forward * movementForceForward);
                 }
@@ -118,9 +119,11 @@ public class PlayerMovement : MonoBehaviour
                     rb.AddForce((Vector2)transform.up * Time.deltaTime * -sideways * movementForceSideways);
                 }
                 break;
-            default:
-                anim.setBackWardsEngineState(PlayerAnimation.EngineState.off);
+            case PlayerState.MovementState.chargePrep:
+                //Nothing
                 break;
+            default:
+                throw new System.NotImplementedException();
         }
     }
 

@@ -1,27 +1,17 @@
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.UI;
+
 
 public class PlayerState : MonoBehaviour
 {
-    public enum MovementState
-    {
-        moving,
-        chargePrep,
-        charge
-    }
-    private MovementState mMovementState = MovementState.moving;
-    public MovementState movementState {
-        get { return mMovementState;  }
-        set { mMovementState = value; }
-    }
+    PlayerAnimation pAnimation;
+    PlayerGui pGui;
 
-    //Life
+    //Ship Values
     public int mHullPoints = 10;
     public int hullPoints {
         set {
             mHullPoints = Mathf.Max(value, 0);
-            updateText();
+            pGui.updateText();
         }
         get { return mHullPoints; }
     }
@@ -31,7 +21,7 @@ public class PlayerState : MonoBehaviour
     public int shieldPoints {
         set {
             mShieldPoints = Mathf.Max(value, 0);
-            updateText();
+            pGui.updateText();
         }
         get { return mShieldPoints; }
     }
@@ -41,7 +31,8 @@ public class PlayerState : MonoBehaviour
     public int fuel {
         set {
             mFuel = value;
-            updateText();
+            pGui.updateText();
+            pAnimation.updateFuelGauge(mFuel, maxFuel);
         }
         get { return mFuel; }
     }
@@ -51,61 +42,53 @@ public class PlayerState : MonoBehaviour
     public int metal {
         set {
             mMetal = value;
-            updateText();
+            pGui.updateText();
         }
         get { return mMetal; }
     }
     public int maxMetal = 100;
 
-    Text hullText = null;
-    Text shieldText = null;
-    Text fuelText = null;
-    Text metalText = null;
+    //Ship State
+    public enum MovementState
+    {
+        undefined,
+        idle,
+        moving_forwards,
+        moving_backwards,
+        chargePrep,
+        charge
+    }
+    private MovementState mMovementState = MovementState.undefined;
+    public MovementState movementState {
+        get { return mMovementState; }
+        set { 
+            mMovementState = value;
+            pAnimation.updateEngines(mMovementState);
+        }
+    }
 
     void Start()
     {
-        var hull = GameObject.Find("Canvas/HullPoints");
-        var shield = GameObject.Find("Canvas/ShieldPoints");
-        var fuel = GameObject.Find("Canvas/PlayerFuel");
-        var metal = GameObject.Find("Canvas/PlayerMetal");
-        Assert.IsNotNull(hull);
-        Assert.IsNotNull(shield);
-        Assert.IsNotNull(fuel);
-        Assert.IsNotNull(metal);
-        hullText = hull.GetComponent<Text>();
-        shieldText = shield.GetComponent<Text>();
-        fuelText = fuel.GetComponent<Text>();
-        metalText = metal.GetComponent<Text>();
-        Assert.IsNotNull(hullText);
-        Assert.IsNotNull(shieldText);
-        Assert.IsNotNull(fuelText);
-        Assert.IsNotNull(metalText);
-        updateText();
+        pAnimation = GetComponent<PlayerAnimation>();
+        pGui = GetComponent<PlayerGui>();
+        movementState = PlayerState.MovementState.idle;
     }
 
-    private void updateText() {
-        hullText.text =   string.Format("Hull:   {0,3}|{1,3}", maxHullPoints, hullPoints);
-        shieldText.text = string.Format("Shield: {0,3}|{1,3}", maxShieldPoints, shieldPoints);
-        fuelText.text =   string.Format("Fuel:   {0,3}|{1,3}", maxFuel, fuel);
-        metalText.text  = string.Format("Metal:  {0,3}|{1,3}", maxMetal, metal);
-    }
-    
     public bool takeDamage(int dmg) {
         switch(movementState) {
-            case MovementState.chargePrep:
-            case MovementState.moving:
+            case MovementState.charge:
+                //No damage taken
+                return false;
+            default:
                 if (shieldPoints > 0)
                     shieldPoints -= dmg;
                 else
                     hullPoints -= dmg;
 
-                if(hullPoints <= 0) {
+                if (hullPoints <= 0) {
                     //TODO: GameOver
                 }
                 return true;
-            default:
-                //No damage taken
-                return false;
         }
     }
 }
