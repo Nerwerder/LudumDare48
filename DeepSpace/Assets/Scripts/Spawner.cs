@@ -25,6 +25,17 @@ public class Spawner : MonoBehaviour
     {
         while(true)
         {
+
+           for(int j = currentObjects.Count-1; j > -1 ; j--)
+            {
+                if (currentObjects[j] == null)
+                {
+                    currentObjects.RemoveAt(j);
+                }
+                    
+            }
+
+
             if(needsRespawn)
             {
                 for (int i = 0; i < spawnAmount; i++)
