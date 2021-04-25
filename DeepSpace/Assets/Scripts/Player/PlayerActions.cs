@@ -10,13 +10,13 @@ public class PlayerActions : MonoBehaviour
     public float collectRange = 30f;
     public float dropOfRange = 20f;
     public GameObject deliveryPrefab;
+    public float spaceStationInteractionRange = 30f;
 
     LootParent lootParent = null;
     PlayerState state = null;
     SpaceStation home = null;
 
-    void Start()
-    {
+    void Start() {
         lootParent = FindObjectOfType<LootParent>();
         Assert.IsNotNull(lootParent);
         home = FindObjectOfType<SpaceStation>();
@@ -25,9 +25,17 @@ public class PlayerActions : MonoBehaviour
         Assert.IsNotNull(state);
     }
 
-    void Update()
-    {
+    void Update() {
         collectCoolDownTimer += Time.deltaTime;
+    }
+
+    public void action(bool aCollectLoot, bool aDropLoot, bool aInteract) {
+        if(aCollectLoot)
+            collectLoot();
+        if(aDropLoot)
+            dropLoot();
+        if(aInteract)
+            interact();
     }
 
     public void collectLoot() {
@@ -46,6 +54,13 @@ public class PlayerActions : MonoBehaviour
                 Instantiate(deliveryPrefab, transform.position + (dir.normalized * 5), Quaternion.identity, lootParent.transform);
             }
             state.metal = 0;
+        }
+    }
+
+    public void interact() {
+        //Is the Space Station near?
+        if(Vector3.Distance(home.transform.position, transform.position) < spaceStationInteractionRange) {
+            home.interact();
         }
     }
 }

@@ -15,10 +15,10 @@ public class PlayerGui : MonoBehaviour
     {
         state = GetComponent<PlayerState>();
         Assert.IsNotNull(state);
-        var hull = GameObject.Find("Canvas/HullPoints");
-        var shield = GameObject.Find("Canvas/ShieldPoints");
-        var fuel = GameObject.Find("Canvas/PlayerFuel");
-        var metal = GameObject.Find("Canvas/PlayerMetal");
+        var hull = GameObject.Find("Canvas/PlayerStatus/HullPoints");
+        var shield = GameObject.Find("Canvas/PlayerStatus/ShieldPoints");
+        var fuel = GameObject.Find("Canvas/PlayerStatus/Fuel");
+        var metal = GameObject.Find("Canvas/PlayerStatus/Metal");
         Assert.IsNotNull(hull);
         Assert.IsNotNull(shield);
         Assert.IsNotNull(fuel);

@@ -54,21 +54,21 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector3 mousePos = getMousePos();
-        float vertical = Input.GetAxis("Vertical");
-        float horizontal = Input.GetAxis("Horizontal");
-        float zoom = Input.GetAxis("Mouse ScrollWheel");
+        //Axis
+        float vertical = Input.GetAxis("Vertical"); //q e
+        float horizontal = Input.GetAxis("Horizontal");//w s
+        float zoom = Input.GetAxis("Mouse ScrollWheel");//mouse 3
+        //Buttons
         bool rotL = Input.GetKey(KeyCode.A);
         bool rotR = Input.GetKey(KeyCode.D);
         bool spaceDown = Input.GetKeyDown(KeyCode.Space);
         bool spaceUp = Input.GetKeyUp(KeyCode.Space);
         bool collectLoot = Input.GetKeyDown(KeyCode.C);
         bool dropLoot = Input.GetKeyDown(KeyCode.V);
+        bool interact = Input.GetKeyDown(KeyCode.F);
 
         movement.move(mousePos, rotL, rotR, vertical, horizontal, spaceDown, spaceUp);
-        if(collectLoot)
-            actions.collectLoot();
-        if (dropLoot)
-            actions.dropLoot();
+        actions.action(collectLoot, dropLoot, interact);
         if (zoom != 0)
             fCamera.zoom(zoom);
     }

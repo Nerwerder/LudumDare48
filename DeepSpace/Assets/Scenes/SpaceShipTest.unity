@@ -205,6 +205,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2421810056994078184, guid: 7d91894de2ddf52428c9d8d85fdfe3cf, type: 3}
   m_PrefabInstance: {fileID: 14390519}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &114455546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 896583323863925796, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+  m_PrefabInstance: {fileID: 1477538201642995933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &134575906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,6 +217,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 597658276, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
+      propertyPath: stationMenu
+      value: 
+      objectReference: {fileID: 114455546}
+    - target: {fileID: 597658276, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
+      propertyPath: disableGuiDistance
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 5201862521964901913, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
       propertyPath: m_Name
       value: SpaceStation
@@ -269,9 +282,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6140439834960962784, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
+      propertyPath: spaceStationInteractionRange
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 6763075400988580680, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6763075400988580684, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
+      propertyPath: chargePrepTime
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6763075400988580686, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
       propertyPath: m_RootOrder
@@ -405,7 +426,7 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &548131477
 GameObject:
@@ -441,8 +462,19 @@ Transform:
   - {fileID: 599329454}
   - {fileID: 14390520}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &597658281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4167105703735408657, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
+  m_PrefabInstance: {fileID: 134575906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bb4732f91000c4f88bcec6b570a21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &599329453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -795,7 +827,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1819543301
 PrefabInstance:
@@ -872,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 617731539462555674, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 617731539462555674, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -923,6 +955,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 896583323863925796, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241492820681539516, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 597658281}
+    - target: {fileID: 1241492820681539516, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: repairShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241492820681539516, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpaceStation, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241492820681539516, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1477538203584301521, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -933,7 +985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1477538203584301521, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1477538203584301521, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1011,6 +1063,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3249584461040203775, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249584461040203775, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249584461040203775, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 597658281}
+    - target: {fileID: 3249584461040203775, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249584461040203775, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: storeMetal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249584461040203775, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpaceStation, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249584461040203775, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966142674455521953, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966142674455521953, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966142674455521953, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 597658281}
+    - target: {fileID: 5966142674455521953, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966142674455521953, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: refuelShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966142674455521953, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpaceStation, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966142674455521953, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
 --- !u!1001 &2458960875188506614
@@ -1083,7 +1191,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7623815607855715524, guid: 60145095f2aa2c74fb6e5af2c4482bef, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7623815607855715524, guid: 60145095f2aa2c74fb6e5af2c4482bef, type: 3}
       propertyPath: m_LocalPosition.x
