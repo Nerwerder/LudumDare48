@@ -8,13 +8,21 @@ public class PlayerActions : MonoBehaviour
     public float collectCoolDown = 2f;
     float collectCoolDownTimer = 0f;
     public float collectRange = 30f;
+    public float dropOfRange = 20f;
+    public GameObject deliveryPrefab;
 
     LootParent lootParent = null;
+    PlayerState state = null;
+    SpaceStation home = null;
 
     void Start()
     {
         lootParent = FindObjectOfType<LootParent>();
         Assert.IsNotNull(lootParent);
+        home = FindObjectOfType<SpaceStation>();
+        Assert.IsNotNull(home);
+        state = GetComponent<PlayerState>();
+        Assert.IsNotNull(state);
     }
 
     void Update()
@@ -29,4 +37,15 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    public void dropLoot() {
+        float td = Vector2.Distance((Vector2)home.transform.position, (Vector2)transform.position);
+        if ((td < dropOfRange) && state.hasMetal()) {
+            int metal = state.getAllMetal();
+            for(var k = 0; k < metal; ++k) {
+                Vector3 dir = (home.transform.position-transform.position).normalized;
+                dir = Quaternion.Euler(0, 0, Random.Range(-60f, 60f)) * dir;
+                Instantiate(deliveryPrefab, transform.position + (dir.normalized * 5), Quaternion.identity, lootParent.transform);
+            }
+        }
+    }
 }
