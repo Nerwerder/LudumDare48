@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float chargeForce = 3000f;
     public float chargeDuration = 0.2f;
     public float chargeCoolDown = 0.5f;
+    public int chargeFuelCost = 7;
 
     private float chargePrepTimer = 0f;
     private float chargeTimer = 0f;
@@ -83,10 +84,15 @@ public class PlayerMovement : MonoBehaviour
                 chargeCoolDownTimer = 0;
             }
         } else if (end) {
-            if ((state.movementState == PlayerState.MovementState.chargePrep) && (chargePrepTimer >= chargePrepTime)) {
+            if ((state.movementState == PlayerState.MovementState.chargePrep) && 
+                (chargePrepTimer >= chargePrepTime) &&
+                (state.fuel > chargeFuelCost)) {
                 state.movementState = PlayerState.MovementState.charge;
-                chargePrepTimer = 0;
+                state.fuel -= chargeFuelCost;
+            } else {
+                state.movementState = PlayerState.MovementState.moving;
             }
+            chargePrepTimer = 0;
         }
     }
 

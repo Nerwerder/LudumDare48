@@ -4862,11 +4862,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401097435212542135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00171, y: 0.0754, z: 0}
-  m_LocalScale: {x: 7, y: 2, z: 1}
-  m_Children:
-  - {fileID: 2737145437855512174}
-  m_Father: {fileID: 6763075400988580686}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.95, y: 0.86956525, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2737145437855512174}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4109666876245032929
@@ -29082,7 +29081,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8114661081566327386}
+  - {fileID: 2737145437855512174}
   - {fileID: 5745618833023552565}
   - {fileID: 4883214004645489481}
   m_Father: {fileID: 0}
@@ -29164,11 +29163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c859722a80c7e544c9acb3a5172b2701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hullPoints: 10
+  mHullPoints: 10
   maxHullPoints: 10
-  shieldPoints: 0
+  mShieldPoints: 0
   maxShieldPoints: 5
-  metal: 0
+  mFuel: 100
+  maxFuel: 100
+  mMetal: 0
   maxMetal: 100
 --- !u!114 &6763075400988580684
 MonoBehaviour:
@@ -29186,10 +29187,11 @@ MonoBehaviour:
   rotationSpeed: 2
   movementForceForward: 800
   movementForceSideways: 400
-  chargePrepTime: 0.1
+  chargePrepTime: 0.2
   chargeForce: 5000
   chargeDuration: 1
-  chargeCoolDown: 1
+  chargeCoolDown: 0.5
+  chargeFuelCost: 7
 --- !u!114 &6140439834960962784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29288,10 +29290,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6928626830929171790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.05, y: 1.15, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8114661081566327386}
+  m_LocalPosition: {x: -0.0017089844, y: 0.0754, z: 0}
+  m_LocalScale: {x: 7.4, y: 2.3, z: 1}
+  m_Children:
+  - {fileID: 8114661081566327386}
+  m_Father: {fileID: 6763075400988580686}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5396004469652616462

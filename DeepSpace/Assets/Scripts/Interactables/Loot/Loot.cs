@@ -15,7 +15,7 @@ public class Loot : Interactable
 
     public override void interact(GameObject other) {
         lootParent.deregisterInactiveLoot(gameObject.GetComponent<Loot>());
-        other.GetComponent<PlayerState>().addMetal(metalValue);
+        other.GetComponent<PlayerState>().metal += metalValue;
         Destroy(gameObject);
     }
 

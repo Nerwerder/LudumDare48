@@ -39,13 +39,13 @@ public class PlayerActions : MonoBehaviour
 
     public void dropLoot() {
         float td = Vector2.Distance((Vector2)home.transform.position, (Vector2)transform.position);
-        if ((td < dropOfRange) && state.hasMetal()) {
-            int metal = state.getAllMetal();
-            for(var k = 0; k < metal; ++k) {
+        if ((td < dropOfRange) && (state.metal > 0)) {
+            for(var k = 0; k < state.metal; ++k) {
                 Vector3 dir = (home.transform.position-transform.position).normalized;
                 dir = Quaternion.Euler(0, 0, Random.Range(-60f, 60f)) * dir;
                 Instantiate(deliveryPrefab, transform.position + (dir.normalized * 5), Quaternion.identity, lootParent.transform);
             }
+            state.metal = 0;
         }
     }
 }
