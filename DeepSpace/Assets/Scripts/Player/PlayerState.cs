@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -34,7 +32,7 @@ public class PlayerState : MonoBehaviour
     {
         var hull = GameObject.Find("Canvas/HullPoints");
         var shield = GameObject.Find("Canvas/ShieldPoints");
-        var metal = GameObject.Find("Canvas/Metal");
+        var metal = GameObject.Find("Canvas/PlayerMetal");
         Assert.IsNotNull(hull);
         Assert.IsNotNull(shield);
         Assert.IsNotNull(metal);
@@ -69,10 +67,20 @@ public class PlayerState : MonoBehaviour
         }
     }
 
+    public bool hasMetal() {
+        return metal != 0;
+    }
+
     public bool addMetal(int mtl) {
         metal += mtl;
         updateText();
         return true;
     }
-       
+
+    public int getAllMetal() {
+        var m = metal;
+        metal = 0;
+        updateText();
+        return m;
+    }      
 }

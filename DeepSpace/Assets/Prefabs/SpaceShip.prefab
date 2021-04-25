@@ -29202,8 +29202,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4433ae990418ad24e912897f805f0e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectCoolDown: 2
+  collectCoolDown: 1
   collectRange: 40
+  dropOfRange: 60
+  deliveryPrefab: {fileID: 5310252481642988393, guid: ab8a4ed6c384ff243a780e426e59db35, type: 3}
 --- !u!114 &3602545087970988218
 MonoBehaviour:
   m_ObjectHideFlags: 0

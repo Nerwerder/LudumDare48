@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -7,9 +5,9 @@ public class Loot : Interactable
 {
     public int metalValue = 1;
     public float speed = 10f;
-    private bool active = false;
-    private Transform player = null;
-    private LootParent lootParent = null;
+    bool active = false;
+    Transform player = null;
+    LootParent lootParent = null;
 
     public override void interact(GameObject other, Collision2D collision) {
         throw new System.NotImplementedException();

@@ -62,11 +62,13 @@ public class PlayerController : MonoBehaviour
         bool spaceDown = Input.GetKeyDown(KeyCode.Space);
         bool spaceUp = Input.GetKeyUp(KeyCode.Space);
         bool collectLoot = Input.GetKeyDown(KeyCode.C);
-
+        bool dropLoot = Input.GetKeyDown(KeyCode.V);
 
         movement.move(mousePos, rotL, rotR, vertical, horizontal, spaceDown, spaceUp);
         if(collectLoot)
             actions.collectLoot();
+        if (dropLoot)
+            actions.dropLoot();
         if (zoom != 0)
             fCamera.zoom(zoom);
     }

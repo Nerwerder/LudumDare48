@@ -7,12 +7,11 @@ public class FollowerCamera : MonoBehaviour
     public float smoothSpeed = 10f;
     public float zoomFactor = 3f;
 
-    Vector3 offset;
+    public Vector3 offset;
     Camera cam;
     void Start()
     {
         Assert.IsNotNull(player);
-        offset = transform.position - player.position;
         cam = GetComponent<Camera>();
         Assert.IsNotNull(cam);
     }
