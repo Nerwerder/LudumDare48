@@ -39580,7 +39580,7 @@ MonoBehaviour:
   rotationSpeed: 2
   movementForceForward: 800
   movementForceSideways: 400
-  chargePrepTime: 0.2
+  chargePrepTime: 0.3
   chargeForce: 5000
   chargeDuration: 1
   chargeCoolDown: 0.5
@@ -39601,6 +39601,7 @@ MonoBehaviour:
   collectRange: 40
   dropOfRange: 60
   deliveryPrefab: {fileID: 5310252481642988393, guid: ab8a4ed6c384ff243a780e426e59db35, type: 3}
+  spaceStationInteractionRange: 35
 --- !u!114 &3602545087970988218
 MonoBehaviour:
   m_ObjectHideFlags: 0
