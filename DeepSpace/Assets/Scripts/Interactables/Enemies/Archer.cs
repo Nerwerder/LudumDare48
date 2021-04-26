@@ -20,7 +20,7 @@ public class Archer : Enemy
         base.Start();
         //Check if a BulletParent exists
         Assert.IsNotNull(bulletParentPrefab);
-        var bp = GameObject.Find("/BulletParent");
+        var bp = GameObject.Find("/BulletParent(Clone)");
         if(bp == null)
             bp = Instantiate(bulletParentPrefab);
         bulletParent = bp.transform;
