@@ -6,6 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     public List<ParticleSystem> defaultBackwardsEngines = new List<ParticleSystem>();
     public List<ParticleSystem> chargeBackwardsEngines = new List<ParticleSystem>();
+    public List<ParticleSystem> travelBackwardsEngines = new List<ParticleSystem>();
     public List<ParticleSystem> forwardsEngines = new List<ParticleSystem>();
     public List<GameObject> fuelGaugeSprites = new List<GameObject>();
     public GameObject mainShield;
@@ -53,29 +54,31 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    private void setEngineState(bool d, bool t, bool c, bool f) {
+        setStateForAll(defaultBackwardsEngines, d);
+        setStateForAll(chargeBackwardsEngines, c);
+        setStateForAll(travelBackwardsEngines, t);
+        setStateForAll(forwardsEngines, f);
+    }
+
     public void updateEngines(PlayerState.MovementState state) {
         switch(state) {
             case PlayerState.MovementState.idle:
             case PlayerState.MovementState.chargePrep:
             case PlayerState.MovementState.dead:
-                setStateForAll(defaultBackwardsEngines, false);
-                setStateForAll(chargeBackwardsEngines, false);
-                setStateForAll(forwardsEngines, false);
+                setEngineState(false, false, false, false);
                 break;
             case PlayerState.MovementState.moving_forwards:
-                setStateForAll(defaultBackwardsEngines, true);
-                setStateForAll(chargeBackwardsEngines, false);
-                setStateForAll(forwardsEngines, false);
+                setEngineState(true, false, false, false);
                 break;
-            case PlayerState.MovementState.moving_backwards:
-                setStateForAll(defaultBackwardsEngines, false);
-                setStateForAll(chargeBackwardsEngines, false);
-                setStateForAll(forwardsEngines, true);
+            case PlayerState.MovementState.travel:
+                setEngineState(false, true, false, false);
                 break;
             case PlayerState.MovementState.charge:
-                setStateForAll(defaultBackwardsEngines, false);
-                setStateForAll(chargeBackwardsEngines, true);
-                setStateForAll(forwardsEngines, false);
+                setEngineState(false, false, true, false);
+                break;
+            case PlayerState.MovementState.moving_backwards:
+                setEngineState(false, false, false, true);
                 break;
             default:
                 throw new System.NotImplementedException();

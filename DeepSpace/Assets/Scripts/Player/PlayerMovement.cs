@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float travelModeForceMultiplier = 2f;
     public int travelModeSecondsPerFuel = 4;
     public float travelRotationDivider = 2f;
+    float travelTimer = 0f;
 
     private float chargePrepTimer = 0f;
     private float chargeTimer = 0f;
@@ -56,19 +57,22 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.MovementState.charge:
                 chargeTimer += Time.deltaTime;
                 break;
+            case PlayerState.MovementState.travel:
+                travelTimer += Time.deltaTime;
+                break;
             default:
                 chargeCoolDownTimer += Time.deltaTime;
                 break;
         }
     }
 
-    public void move(Vector3 mousePos, bool left, bool right, float forward, float sideways, bool chStart, bool chEnd, bool tStart, bool tEnd) {
+    public void move(Vector3 mousePos, bool left, bool right, float forward, float sideways, bool chStart, bool chEnd, bool travel) {
         if (rotateTowardsMouse)
             rotate(mousePos);
         else
             rotate(left, right);
         checkChargeState(chStart, chEnd);
-        checkTravelState(tStart, tEnd);
+        checkTravelState(travel);
         move(forward, sideways);
     }
 
@@ -103,31 +107,49 @@ public class PlayerMovement : MonoBehaviour
     }    
 
     public void checkChargeState(bool start, bool end) {
-        if (!start && !end)
-            return;
-        if (start) {
-            if (chargeCoolDownTimer >= chargeCoolDown) {
-                state.movementState = PlayerState.MovementState.chargePrep;
-                chargeCoolDownTimer = 0;
-            }
-        } else if (end) {
-            if ((state.movementState == PlayerState.MovementState.chargePrep) && (chargePrepTimer >= chargePrepTime) && (state.fuel > chargeFuelCost)) {
-                state.movementState = PlayerState.MovementState.charge;
-                state.invulnerable = true;
-                state.fuel -= chargeFuelCost;
-            } else {
-                state.movementState = PlayerState.MovementState.idle;
-            }
-            chargePrepTimer = 0;
+        switch(state.movementState) {
+            case PlayerState.MovementState.idle:
+            case PlayerState.MovementState.moving_forwards:
+            case PlayerState.MovementState.moving_backwards:
+            case PlayerState.MovementState.travel:
+                if (start) {
+                    if (chargeCoolDownTimer >= chargeCoolDown) {
+                        state.movementState = PlayerState.MovementState.chargePrep;
+                        chargeCoolDownTimer = 0;
+                    }
+                }
+                break;
+            case PlayerState.MovementState.chargePrep:
+                if(end) {
+                    if((chargePrepTimer >= chargePrepTime) && (state.fuel > chargeFuelCost)) {
+                        state.movementState = PlayerState.MovementState.charge;
+                        state.invulnerable = true;
+                        state.fuel -= chargeFuelCost;
+                    } else {
+                        state.movementState = PlayerState.MovementState.idle;
+                    }
+                }
+                break;
+        } 
+    }
+
+    public void checkTravelState(bool travel) {
+        switch(state.movementState) {
+            case PlayerState.MovementState.idle:
+            case PlayerState.MovementState.moving_forwards:
+            case PlayerState.MovementState.moving_backwards:
+                if(travel)
+                    state.movementState = PlayerState.MovementState.travel;
+                break;
+            case PlayerState.MovementState.travel:
+                if(!travel)
+                    state.movementState = PlayerState.MovementState.idle;
+                break;
         }
     }
 
-    public void checkTravelState(bool start, bool end) {
-        //TODO
-    }
-
     public void move(float forward, float sideways) {
-        switch (state.movementState) {
+        switch(state.movementState) {
             case PlayerState.MovementState.charge:
                 if (chargeTimer >= chargeDuration) {
                     state.movementState = PlayerState.MovementState.idle;
@@ -137,6 +159,16 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce((Vector2)transform.right * Time.deltaTime * movementForceForward * chargeForceMultiplier);
                 break;
             case PlayerState.MovementState.travel:
+                if (state.fuel > 0) {
+                    if (travelTimer > travelModeSecondsPerFuel) {
+                        state.fuel -= 1;
+                        travelTimer = 0f;
+                    }
+                } else {
+                    state.movementState = PlayerState.MovementState.idle;
+                }
+                rb.AddForce((Vector2)transform.right * Time.deltaTime * movementForceForward * travelModeForceMultiplier); ;
+                break;
             case PlayerState.MovementState.idle:
             case PlayerState.MovementState.moving_forwards:
             case PlayerState.MovementState.moving_backwards:

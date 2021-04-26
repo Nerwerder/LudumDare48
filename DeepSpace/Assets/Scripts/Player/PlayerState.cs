@@ -101,9 +101,11 @@ public class PlayerState : MonoBehaviour
     private MovementState mMovementState = MovementState.undefined;
     public MovementState movementState {
         get { return mMovementState; }
-        set { 
-            mMovementState = value;
-            pAnimation.updateEngines(mMovementState);
+        set {
+            if (mMovementState != value) {
+                mMovementState = value;
+                pAnimation.updateEngines(mMovementState);
+            }
         }
     }
 
