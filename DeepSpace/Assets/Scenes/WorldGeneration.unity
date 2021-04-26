@@ -2611,6 +2611,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 837876304}
+    - target: {fileID: 2458960875557505304, guid: c43dd14dad5dbef4bb7e1fd27ea7200a, type: 3}
+      propertyPath: zoomFactor
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2458960875557505306, guid: c43dd14dad5dbef4bb7e1fd27ea7200a, type: 3}
+      propertyPath: orthographic size
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2458960875557505307, guid: c43dd14dad5dbef4bb7e1fd27ea7200a, type: 3}
       propertyPath: m_RootOrder
       value: 0

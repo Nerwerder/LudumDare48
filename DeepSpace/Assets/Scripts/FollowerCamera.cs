@@ -6,6 +6,8 @@ public class FollowerCamera : MonoBehaviour
     public Transform player;
     public float smoothSpeed = 10f;
     public float zoomFactor = 3f;
+    public float maxZoom = 5000f;
+    public float minZoom = 10f;
 
     public Vector3 offset;
     Camera cam;
@@ -23,6 +25,6 @@ public class FollowerCamera : MonoBehaviour
     }
 
     public void zoom(float c) {
-        cam.orthographicSize += (-c * zoomFactor);
+        cam.orthographicSize = Mathf.Clamp((cam.orthographicSize+(-c * zoomFactor)), minZoom, maxZoom);
     }
 }
