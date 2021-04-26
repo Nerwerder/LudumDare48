@@ -55,7 +55,7 @@ public class Spawner : MonoBehaviour
     void SpawnObjects()
     {
         if (spawnAmount <= 4)
-            Destroy(this);
+            Destroy(gameObject);
 
         for (int i = 0; i < spawnAmount; i++)
         {
