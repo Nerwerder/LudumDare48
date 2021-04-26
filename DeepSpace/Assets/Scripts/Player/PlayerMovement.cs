@@ -95,6 +95,9 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.MovementState.travel:
                 rotSpeed = rotationSpeed / travelRotationDivider;
                 break;
+            case PlayerState.MovementState.dead:
+                rotSpeed = 0f;
+                break;
         }
         transform.rotation = Quaternion.Slerp(transform.rotation, rot, (rotSpeed * Time.deltaTime));
     }    
@@ -110,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         } else if (end) {
             if ((state.movementState == PlayerState.MovementState.chargePrep) && (chargePrepTimer >= chargePrepTime) && (state.fuel > chargeFuelCost)) {
                 state.movementState = PlayerState.MovementState.charge;
+                state.invulnerable = true;
                 state.fuel -= chargeFuelCost;
             } else {
                 state.movementState = PlayerState.MovementState.idle;
@@ -127,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.MovementState.charge:
                 if (chargeTimer >= chargeDuration) {
                     state.movementState = PlayerState.MovementState.idle;
+                    state.invulnerable = false;
                     chargeTimer = 0;
                 }
                 rb.AddForce((Vector2)transform.right * Time.deltaTime * movementForceForward * chargeForceMultiplier);
@@ -149,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case PlayerState.MovementState.chargePrep:
+            case PlayerState.MovementState.dead:
                 //Nothing
                 break;
             default:

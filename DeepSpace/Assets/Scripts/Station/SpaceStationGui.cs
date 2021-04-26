@@ -5,11 +5,13 @@ using UnityEngine.Assertions;
 public class SpaceStationGui : MonoBehaviour
 {
     Transform player;
+    PlayerState state;
     public GameObject stationMenu = null;
     public float disableGuiDistance = 50f;
 
     void Start() {
         var pc = FindObjectOfType<PlayerController>();
+        state = FindObjectOfType<PlayerState>();
         Assert.IsNotNull(pc);
         player = pc.transform;
     }
@@ -21,6 +23,12 @@ public class SpaceStationGui : MonoBehaviour
     }
 
     public void showGui() {
-        stationMenu.SetActive(!stationMenu.activeSelf);
+        if(stationMenu.activeSelf) {
+            stationMenu.SetActive(false);
+            state.invulnerable = false;
+        } else {
+            stationMenu.SetActive(true);
+            state.invulnerable = true;
+        }
     }
 }

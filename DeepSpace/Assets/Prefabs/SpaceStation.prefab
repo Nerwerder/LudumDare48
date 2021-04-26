@@ -140,13 +140,13 @@ MonoBehaviour:
   repairButton: {fileID: 0}
   reFuelButton: {fileID: 0}
   storeMetalButton: {fileID: 0}
-  startFuelLevel: 1
+  startFuelLevel: 0
   fuelUpgradeButton: {fileID: 0}
   startShieldLevel: 0
   shieldUpgradeButton: {fileID: 0}
-  startCargoLevel: 1
+  startCargoLevel: 0
   cargoUpgradeButton: {fileID: 0}
-  startThrusterLevel: 1
+  startThrusterLevel: 0
   thrusterUpgradeButton: {fileID: 0}
   startMetal: 0
   metalText: {fileID: 0}

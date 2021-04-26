@@ -7,6 +7,7 @@ public class Loot : Interactable
     public float speed = 10f;
     bool active = false;
     Transform player = null;
+    public GameObject lootParentPrefab;
     LootParent lootParent = null;
 
     public override void interact(GameObject other, Collision2D collision) {
@@ -14,9 +15,13 @@ public class Loot : Interactable
     }
 
     public override void interact(GameObject other) {
-        lootParent.deregisterInactiveLoot(gameObject.GetComponent<Loot>());
-        other.GetComponent<PlayerState>().metal += metalValue;
-        Destroy(gameObject);
+        bool r = other.GetComponent<PlayerState>().addMetal(metalValue);
+        if(r) {
+            lootParent.deregisterInactiveLoot(gameObject.GetComponent<Loot>());
+            Destroy(gameObject);
+        } else {
+            active = false;
+        }
     }
 
     public void activate() {
@@ -27,7 +32,12 @@ public class Loot : Interactable
     {
         player = FindObjectOfType<PlayerController>().transform;
         Assert.IsNotNull(player);
+        Assert.IsNotNull(lootParentPrefab);
         lootParent = FindObjectOfType<LootParent>();
+        if(lootParent == null) {
+            Instantiate(lootParentPrefab);
+            lootParent = FindObjectOfType<LootParent>();
+        }
         Assert.IsNotNull(lootParent);
     }
 

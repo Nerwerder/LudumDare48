@@ -5,6 +5,7 @@ public class PlayerState : MonoBehaviour
 {
     PlayerAnimation pAnimation;
     PlayerGui pGui;
+    public GameObject GameOverScreen;
 
     //HULL
     public int mHullPoints = 10;
@@ -77,6 +78,14 @@ public class PlayerState : MonoBehaviour
         get { return mMaxMetal; }
     }
 
+    public bool addMetal(int v) {
+        if((metal+v) < maxMetal) {
+            metal += v;
+            return true;
+        }
+        return false;
+    }
+
     //States
     public enum MovementState
     {
@@ -86,7 +95,8 @@ public class PlayerState : MonoBehaviour
         moving_backwards,
         chargePrep,
         charge,
-        travel
+        travel,
+        dead
     }
     private MovementState mMovementState = MovementState.undefined;
     public MovementState movementState {
@@ -96,6 +106,16 @@ public class PlayerState : MonoBehaviour
             pAnimation.updateEngines(mMovementState);
         }
     }
+
+    bool mInvulnerable;
+    public bool invulnerable {
+        set {
+            mInvulnerable = value;
+            pAnimation.updateInvulnerability(mInvulnerable);
+        }
+        get { return mInvulnerable; }
+    }
+
 
     void Start()
     {
@@ -120,13 +140,15 @@ public class PlayerState : MonoBehaviour
                 //No damage taken
                 return false;
             default:
-                if (shieldPoints > 0)
-                    shieldPoints -= dmg;
-                else
-                    hullPoints -= dmg;
-
+                if(!invulnerable) {
+                    if (shieldPoints > 0)
+                        shieldPoints -= dmg;
+                    else
+                        hullPoints -= dmg;
+                }
                 if (hullPoints <= 0) {
-                    //TODO: GameOver
+                    movementState = MovementState.dead;
+                    GameOverScreen.SetActive(true);
                 }
                 return true;
         }

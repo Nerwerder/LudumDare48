@@ -10,15 +10,20 @@ public class Asteroid : Interactable
     public GameObject lootPrefab;
     public int minLoot = 3;
     public int maxLoot = 7;
+    public float lootPer100UnitsFactor = 0.1f;
     public float lootOffset = 4f;
 
     public GameObject explosionPrefab;
 
     LootParent lootParent;
-
+    public GameObject lootParentPrefab;
 
     void Start() {
         lootParent = FindObjectOfType<LootParent>();
+        if(lootParent ==null) {
+            Instantiate(lootParentPrefab);
+            lootParent = FindObjectOfType<LootParent>();
+        }
         Assert.IsNotNull(lootPrefab);
         Assert.IsNotNull(lootParent);
     }
@@ -36,7 +41,9 @@ public class Asteroid : Interactable
         }
         switch (state.movementState) {
             case PlayerState.MovementState.charge:
-                for (int k = 0; k < Random.Range(minLoot, maxLoot); ++k) {
+                int rLoot = Random.Range(minLoot, maxLoot);
+                int fLoot = (int)((float)rLoot * Mathf.Max(1, ((transform.position.magnitude/100f) * lootPer100UnitsFactor)));
+                for (int k = 0; k < fLoot; ++k) {
                     var offset = new Vector2(Random.Range(-lootOffset, lootOffset), Random.Range(-lootOffset, lootOffset));
                     var g = Instantiate(lootPrefab, ((Vector2)transform.position + offset), Quaternion.identity, lootParent.transform);
                     lootParent.registerInactiveLoot(g.GetComponent<Loot>());

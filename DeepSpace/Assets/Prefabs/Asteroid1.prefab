@@ -322,10 +322,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifePoints: 2
   collisionDamage: 1
+  minDamageVelocity: 2
   collisionForce: 40
-  maxRotationSpeed: 5
   lootPrefab: {fileID: 5876535783025252506, guid: f6bb37346f7724646a870c6bfe96edcc, type: 3}
   minLoot: 3
   maxLoot: 7
+  lootPer100UnitsFactor: 0.3
   lootOffset: 4
   explosionPrefab: {fileID: 1472366983203257330, guid: 7c32385301986434f9a80637668e381f, type: 3}
+  lootParentPrefab: {fileID: 7623815607855715527, guid: 60145095f2aa2c74fb6e5af2c4482bef, type: 3}

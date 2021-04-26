@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   metalValue: 1
   speed: 25
+  lootParentPrefab: {fileID: 7623815607855715527, guid: 60145095f2aa2c74fb6e5af2c4482bef, type: 3}
 --- !u!58 &826369299
 CircleCollider2D:
   m_ObjectHideFlags: 0

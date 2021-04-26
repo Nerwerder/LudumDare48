@@ -8,7 +8,8 @@ public class PlayerAnimation : MonoBehaviour
     public List<ParticleSystem> chargeBackwardsEngines = new List<ParticleSystem>();
     public List<ParticleSystem> forwardsEngines = new List<ParticleSystem>();
     public List<GameObject> fuelGaugeSprites = new List<GameObject>();
-    public GameObject shield;
+    public GameObject mainShield;
+    public GameObject invulnerableShield;
 
     void Start()
     {
@@ -26,11 +27,19 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    public void updateInvulnerability(bool i) {
+        if(i) {
+            invulnerableShield.SetActive(true);
+        } else {
+            invulnerableShield.SetActive(false);
+        }
+    }
+
     public void updateShieldState(int sl) {
         if(sl > 0) {
-            shield.SetActive(true);
+            mainShield.SetActive(true);
         } else {
-            shield.SetActive(false);
+            mainShield.SetActive(false);
         }
     }
 
@@ -48,6 +57,7 @@ public class PlayerAnimation : MonoBehaviour
         switch(state) {
             case PlayerState.MovementState.idle:
             case PlayerState.MovementState.chargePrep:
+            case PlayerState.MovementState.dead:
                 setStateForAll(defaultBackwardsEngines, false);
                 setStateForAll(chargeBackwardsEngines, false);
                 setStateForAll(forwardsEngines, false);
@@ -69,7 +79,6 @@ public class PlayerAnimation : MonoBehaviour
                 break;
             default:
                 throw new System.NotImplementedException();
-
         }
     }
 }

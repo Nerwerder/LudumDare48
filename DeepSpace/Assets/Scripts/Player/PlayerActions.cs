@@ -13,11 +13,16 @@ public class PlayerActions : MonoBehaviour
     public float spaceStationInteractionRange = 30f;
 
     LootParent lootParent = null;
+    public GameObject lootParentPrefab;
     PlayerState state = null;
     SpaceStation home = null;
 
     void Start() {
         lootParent = FindObjectOfType<LootParent>();
+        if (lootParent == null) {
+            Instantiate(lootParentPrefab);
+            lootParent = FindObjectOfType<LootParent>();
+        }
         Assert.IsNotNull(lootParent);
         home = FindObjectOfType<SpaceStation>();
         Assert.IsNotNull(home);
