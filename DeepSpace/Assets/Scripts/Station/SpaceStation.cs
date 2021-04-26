@@ -114,6 +114,7 @@ public class SpaceStation : MonoBehaviour
         new UpgradeLevel(3, 250, 1500)};
 
     //RESOURCES
+    public int startMetal = 0;
     int mMetal;
     public Text metalText;
     public int metal {
@@ -143,6 +144,8 @@ public class SpaceStation : MonoBehaviour
         curShieldLevel = startShieldLevel;
         curCargoLevel = startCargoLevel;
         curThrusterLevel = startThrusterLevel;
+
+        metal = startMetal;
     }
 
     public void interact() {
