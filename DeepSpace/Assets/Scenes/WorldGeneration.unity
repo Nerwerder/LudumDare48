@@ -605,6 +605,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1528452351}
     - target: {fileID: 4167105703735408657, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
+      propertyPath: enableFreeUpgrades
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167105703735408657, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
       propertyPath: shieldUpgradeButton
       value: 
       objectReference: {fileID: 2007824021}
@@ -669,6 +673,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1463045239, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
+      propertyPath: m_AngularDrag
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6763075400988580680, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
       propertyPath: m_Name
       value: SpaceShip

@@ -174,28 +174,28 @@ public class SpaceStation : MonoBehaviour
 
     public void upgradeFuelCapacity() {
         if(checkCostAndLevel(fuelLevels, curFuelLevel)) {
-            pay(fuelLevels[curFuelLevel].mCost);
+            pay(fuelLevels[curFuelLevel+1].mCost);
             curFuelLevel += 1;
         }
     }
 
     public void upgradeShield() {
         if(checkCostAndLevel(shieldLevels, curShieldLevel)) {
-            pay(shieldLevels[curShieldLevel].mCost);
+            pay(shieldLevels[curShieldLevel+1].mCost);
             curShieldLevel += 1;
         }
     }
 
     public void upgradeCargoCapacity() {
         if(checkCostAndLevel(cargoLevels, curCargoLevel)) {
-            pay(cargoLevels[curCargoLevel].mCost);
+            pay(cargoLevels[curCargoLevel+1].mCost);
             curCargoLevel += 1;
         }
     }
 
     public void upgradeThrusters() {
         if(checkCostAndLevel(thrusterLevel, curThrusterLevel)) {
-            pay(thrusterLevel[curThrusterLevel].mCost);
+            pay(thrusterLevel[curThrusterLevel+1].mCost);
             curThrusterLevel += 1;
         }
     }

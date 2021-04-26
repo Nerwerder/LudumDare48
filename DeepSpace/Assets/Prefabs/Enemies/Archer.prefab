@@ -41,8 +41,8 @@ GameObject:
   - component: {fileID: 443601893179726386}
   - component: {fileID: 443601893179726397}
   - component: {fileID: 443601893179726384}
-  - component: {fileID: 443601893179726387}
   - component: {fileID: 443601893179726385}
+  - component: {fileID: 2783668235864496592}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Interactable
@@ -138,32 +138,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &443601893179726387
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443601893179726396}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.1, y: 5.78}
-    newSize: {x: 4.34, y: 2.82}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.34, y: 2.82}
-  m_EdgeRadius: 0
 --- !u!114 &443601893179726385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,12 +155,30 @@ MonoBehaviour:
   movementForce: 300
   collisionDamage: 1
   destroyedAfterCollision: 0
+  activationRange: 100
+  active: 0
   destroyAnim: {fileID: 245144246084838184, guid: dd7929a61b67879418e0bf04d5aa83c7, type: 3}
   weapon: {fileID: 1377312667}
   minWeaponCoolDown: 1
   maxWeaponCoolDown: 2
-  weaponRange: 40
-  bulletSpeed: 14
+  weaponRange: 60
+  bulletSpeed: 23
   bulletDamage: 1
   bulletPrefab: {fileID: 8504931722174101798, guid: 9b128ff87328d8f4d85bf54cf25bd1f9, type: 3}
   bulletParentPrefab: {fileID: 2177610488333854019, guid: 1b245a23c45642543a907c386d4fb67b, type: 3}
+--- !u!70 &2783668235864496592
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443601893179726396}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2828155, y: -0.106050536}
+  m_Size: {x: 8.322282, y: 5.6002216}
+  m_Direction: 1
