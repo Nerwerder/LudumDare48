@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Fighter : Enemy
 {
-    void Update() {
-        if (!isActive())
-            return;
-        turnToTaget();
-        rb.AddForce(transform.right * Time.deltaTime * movementForce);
+    void FixedUpdate()
+    {
+        if(isActive()) {
+            turnToTaget();
+            rb.AddForce(transform.right * Time.deltaTime * movementForce);
+        }
     }
 }

@@ -43,7 +43,7 @@ public class Archer : Enemy
         curWeaponCoolDown = Random.Range(minWeaponCoolDown, maxWeaponCoolDown);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isActive())
             return;
