@@ -27,13 +27,17 @@ public class SpaceStation : MonoBehaviour
         }
     }
 
-    private void updateButtonText(Button b, List<UpgradeLevel> l, int i, string name) {
-        var t = b.GetComponentInChildren<Text>();
+    private void updateUpgradeButtonText(Button b, List<UpgradeLevel> l, int i, string name) {
+        var t = b.GetComponentsInChildren<Text>();
         Assert.IsNotNull(t);
-        if ((i+1) < l.Count)
-            t.text = string.Format("lvl {0} - {1} - {2}", l[i].mLevel, name, l[i+1].mCost);
-        else
-            t.text = string.Format("lvl {0} - {1} - max", l[i].mLevel, name);
+        Assert.AreEqual(t.Length, 2);
+
+        t[0].text = string.Format("{0}", name);
+        if ((i+1) < l.Count) {
+            t[1].text = string.Format("Cost: {0}", l[i + 1].mCost);
+        } else {
+            t[1].text = "Max";
+        }      
     }
 
     //UPGRADE FUEL
@@ -46,7 +50,7 @@ public class SpaceStation : MonoBehaviour
             mCurFuelLevel = value;
             pState.maxFuel = fuelLevels[mCurFuelLevel].mValue;
             pState.fuel = pState.maxFuel;
-            updateButtonText(fuelUpgradeButton, fuelLevels, mCurFuelLevel, "Fuel Capacity");
+            updateUpgradeButtonText(fuelUpgradeButton, fuelLevels, mCurFuelLevel, "Fuel Capacity");
         }
         get { return mCurFuelLevel; }
     }
@@ -65,7 +69,7 @@ public class SpaceStation : MonoBehaviour
         set {
             mCurShieldLevel = value;
             pState.maxShieldPoints = shieldLevels[mCurShieldLevel].mValue;
-            updateButtonText(shieldUpgradeButton, shieldLevels, mCurShieldLevel, "Shield");
+            updateUpgradeButtonText(shieldUpgradeButton, shieldLevels, mCurShieldLevel, "Shield");
         }
         get { return mCurShieldLevel; }
     }
@@ -84,7 +88,7 @@ public class SpaceStation : MonoBehaviour
         set {
             mCurCargoLevel = value;
             pState.maxMetal = cargoLevels[mCurCargoLevel].mValue;
-            updateButtonText(cargoUpgradeButton, cargoLevels, mCurCargoLevel, "Cargo Capacity");
+            updateUpgradeButtonText(cargoUpgradeButton, cargoLevels, mCurCargoLevel, "Cargo Capacity");
         }
         get { return mCurCargoLevel; }
     }
@@ -103,15 +107,15 @@ public class SpaceStation : MonoBehaviour
         set {
             mCurThrusterLevel = value;
             pMovement.movementForceForward = thrusterLevel[mCurThrusterLevel].mValue;
-            updateButtonText(thrusterUpgradeButton, thrusterLevel, mCurThrusterLevel, "Thrusters");
+            updateUpgradeButtonText(thrusterUpgradeButton, thrusterLevel, mCurThrusterLevel, "Thrusters");
         }
         get { return mCurThrusterLevel; }
     }
     List<UpgradeLevel> thrusterLevel = new List<UpgradeLevel> {
         new UpgradeLevel(0, 0,  0),
         new UpgradeLevel(1, 0, 800),
-        new UpgradeLevel(2, 120, 1200),
-        new UpgradeLevel(3, 250, 1500)};
+        new UpgradeLevel(2, 120, 1000),
+        new UpgradeLevel(3, 250, 1200)};
 
     //RESOURCES
     public int startMetal = 0;
@@ -166,7 +170,7 @@ public class SpaceStation : MonoBehaviour
     }
 
     private bool checkCostAndLevel(List<UpgradeLevel> list, int i) {
-        return ((metal > list[i].mCost) || (enableFreeUpgrades)) && ((i+1) < list.Count);
+        return (((i + 1) < list.Count) && ((metal > list[i+1].mCost) || (enableFreeUpgrades)));
     }
     private void pay(int price) {
         metal -= enableFreeUpgrades ? 0 : price;

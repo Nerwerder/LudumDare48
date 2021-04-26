@@ -39662,7 +39662,11 @@ MonoBehaviour:
   chargeForceMultiplier: 7
   chargeDuration: 1.1
   chargeCoolDown: 0
+  chargeRotationDivider: 4
   chargeFuelCost: 7
+  travelModeForceMultiplier: 2
+  travelModeSecondsPerFuel: 4
+  travelRotationDivider: 2
 --- !u!114 &6140439834960962784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39679,7 +39683,7 @@ MonoBehaviour:
   collectRange: 40
   dropOfRange: 60
   deliveryPrefab: {fileID: 5310252481642988393, guid: ab8a4ed6c384ff243a780e426e59db35, type: 3}
-  spaceStationInteractionRange: 35
+  spaceStationInteractionRange: 45
 --- !u!114 &3602545087970988218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39741,7 +39745,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0.7
-  m_AngularDrag: 1
+  m_AngularDrag: 1.3
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0

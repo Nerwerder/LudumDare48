@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bb4732f91000c4f88bcec6b570a21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableFreeUpgrades: 1
+  enableFreeUpgrades: 0
   repairButton: {fileID: 0}
   reFuelButton: {fileID: 0}
   storeMetalButton: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   cargoUpgradeButton: {fileID: 0}
   startThrusterLevel: 1
   thrusterUpgradeButton: {fileID: 0}
+  startMetal: 0
   metalText: {fileID: 0}
 --- !u!114 &597658276
 MonoBehaviour:
@@ -162,4 +163,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationMenu: {fileID: 0}
-  disableGuiDistance: 35
+  disableGuiDistance: 45

@@ -31,9 +31,10 @@ public class PlayerGui : MonoBehaviour
     }
 
     public void updateText() {
-        hullText.text =   string.Format("Hull:   {0,03}|{1,03}", state.maxHullPoints, state.hullPoints);
-        shieldText.text = string.Format("Shield: {0,03}|{1,03}", state.maxShieldPoints, state.shieldPoints);
-        fuelText.text =   string.Format("Fuel:   {0,03}|{1,03}", state.maxFuel, state.fuel);
-        metalText.text =  string.Format("Metal:  {0,03}|{1,03}", state.maxMetal, state.metal);
+        var format = "{0,3:##0}|{1,3:##0}";
+        hullText.text =   string.Format("Hull:   " + format, state.maxHullPoints, state.hullPoints);
+        shieldText.text = string.Format("Shield: " + format, state.maxShieldPoints, state.shieldPoints);
+        fuelText.text =   string.Format("Fuel:   " + format, state.maxFuel, state.fuel);
+        metalText.text =  string.Format("Metal:  " + format, state.maxMetal, state.metal);
     }
 }
