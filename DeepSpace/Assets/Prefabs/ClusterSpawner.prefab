@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719cb0ebde6bc344a9d5fe6a2794311e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAmount: 16
-  spawnRadius: 100
+  spawnAmount: 32
+  spawnRadius: 150
   respawnDelay: 30
   spawnables:
   - {fileID: 2044267163917656094, guid: d3b52aad94fdd454f83f9e2ce52aad69, type: 3}
