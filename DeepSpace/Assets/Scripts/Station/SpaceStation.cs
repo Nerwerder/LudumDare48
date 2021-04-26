@@ -74,7 +74,7 @@ public class SpaceStation : MonoBehaviour
         get { return mCurShieldLevel; }
     }
     List<UpgradeLevel> shieldLevels = new List<UpgradeLevel> {
-        new UpgradeLevel(0, 0,  0),
+        new UpgradeLevel(0, 0, 0),
         new UpgradeLevel(1, 30, 1),
         new UpgradeLevel(2, 80, 3),
         new UpgradeLevel(3, 140, 5)};
@@ -93,7 +93,7 @@ public class SpaceStation : MonoBehaviour
         get { return mCurCargoLevel; }
     }
     List<UpgradeLevel> cargoLevels = new List<UpgradeLevel> {
-        new UpgradeLevel(0, 0,  50),
+        new UpgradeLevel(0, 0, 50),
         new UpgradeLevel(1, 20, 100),
         new UpgradeLevel(2, 80, 200),
         new UpgradeLevel(3, 120, 500)};
@@ -112,10 +112,10 @@ public class SpaceStation : MonoBehaviour
         get { return mCurThrusterLevel; }
     }
     List<UpgradeLevel> thrusterLevel = new List<UpgradeLevel> {
-        new UpgradeLevel(0, 0,  700),
-        new UpgradeLevel(1, 25, 850),
-        new UpgradeLevel(2, 80, 1000),
-        new UpgradeLevel(3, 150, 1200)};
+        new UpgradeLevel(0, 0, 650),
+        new UpgradeLevel(1, 25, 800),
+        new UpgradeLevel(2, 80, 900),
+        new UpgradeLevel(3, 150, 1000)};
 
     //RESOURCES
     public int startMetal = 0;
