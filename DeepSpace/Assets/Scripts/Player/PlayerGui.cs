@@ -11,33 +11,29 @@ public class PlayerGui : MonoBehaviour
 
     PlayerState state = null;
 
+    private Text getText(string path) {
+        var e = GameObject.Find(path);
+        Assert.IsNotNull(e);
+        var t = e.GetComponent<Text>();
+        Assert.IsNotNull(t);
+        return t;
+    }
+
     void Start()
     {
         state = GetComponent<PlayerState>();
         Assert.IsNotNull(state);
-        var hull = GameObject.Find("Canvas/PlayerStatus/HullPoints");
-        var shield = GameObject.Find("Canvas/PlayerStatus/ShieldPoints");
-        var fuel = GameObject.Find("Canvas/PlayerStatus/Fuel");
-        var metal = GameObject.Find("Canvas/PlayerStatus/Metal");
-        Assert.IsNotNull(hull);
-        Assert.IsNotNull(shield);
-        Assert.IsNotNull(fuel);
-        Assert.IsNotNull(metal);
-        hullText = hull.GetComponent<Text>();
-        shieldText = shield.GetComponent<Text>();
-        fuelText = fuel.GetComponent<Text>();
-        metalText = metal.GetComponent<Text>();
-        Assert.IsNotNull(hullText);
-        Assert.IsNotNull(shieldText);
-        Assert.IsNotNull(fuelText);
-        Assert.IsNotNull(metalText);
+        hullText = getText("Canvas/PlayerStatus/HullPoints");
+        shieldText = getText("Canvas/PlayerStatus/ShieldPoints");
+        fuelText = getText("Canvas/PlayerStatus/Fuel");
+        metalText = getText("Canvas/PlayerStatus/Metal");
         updateText();
     }
 
     public void updateText() {
-        hullText.text = string.Format("Hull:   {0,3}|{1,3}", state.maxHullPoints, state.hullPoints);
-        shieldText.text = string.Format("Shield: {0,3}|{1,3}", state.maxShieldPoints, state.shieldPoints);
-        fuelText.text = string.Format("Fuel:   {0,3}|{1,3}", state.maxFuel, state.fuel);
-        metalText.text = string.Format("Metal:  {0,3}|{1,3}", state.maxMetal, state.metal);
+        hullText.text =   string.Format("Hull:   {0,03}|{1,03}", state.maxHullPoints, state.hullPoints);
+        shieldText.text = string.Format("Shield: {0,03}|{1,03}", state.maxShieldPoints, state.shieldPoints);
+        fuelText.text =   string.Format("Fuel:   {0,03}|{1,03}", state.maxFuel, state.fuel);
+        metalText.text =  string.Format("Metal:  {0,03}|{1,03}", state.maxMetal, state.metal);
     }
 }

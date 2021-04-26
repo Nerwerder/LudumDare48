@@ -8,6 +8,8 @@ public abstract class Enemy : Interactable
     public float movementForce = 300;
     public int collisionDamage = 2;
     public bool destroyedAfterCollision = false;
+    public float activationRange = 100f;
+    public bool active = false;
 
     public GameObject destroyAnim;
 
@@ -30,7 +32,6 @@ public abstract class Enemy : Interactable
                     Instantiate(destroyAnim, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
-                    
                 break;
         }
     }
@@ -47,18 +48,28 @@ public abstract class Enemy : Interactable
         Assert.IsNotNull(rb);
     }
 
+    protected bool isActive() {
+        if(active) {
+            return true;
+        } else if(getDistanceToTarget() < activationRange) {
+            active = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     protected float getAngleToTaget() {
         var tDir = target.position - transform.position;
         return Mathf.Atan2(tDir.y, tDir.x) * Mathf.Rad2Deg;
+    }
+
+    protected float getDistanceToTarget() {
+        return (target.position - transform.position).magnitude;
     }
 
     protected void turnToTaget() {
         Quaternion rot = Quaternion.AngleAxis(getAngleToTaget(), Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rot, (rotationSpeed * Time.deltaTime));
     } 
-
-    void Update()
-    {
-        //Nothing
-    }
 }

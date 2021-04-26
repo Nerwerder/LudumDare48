@@ -85,7 +85,8 @@ public class PlayerState : MonoBehaviour
         moving_forwards,
         moving_backwards,
         chargePrep,
-        charge
+        charge,
+        travel
     }
     private MovementState mMovementState = MovementState.undefined;
     public MovementState movementState {

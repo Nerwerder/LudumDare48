@@ -61,13 +61,15 @@ public class PlayerController : MonoBehaviour
         //Buttons
         bool rotL = Input.GetKey(KeyCode.A);
         bool rotR = Input.GetKey(KeyCode.D);
-        bool spaceDown = Input.GetKeyDown(KeyCode.Space);
-        bool spaceUp = Input.GetKeyUp(KeyCode.Space);
+        bool chargePrep = Input.GetKeyDown(KeyCode.Space);
+        bool charge = Input.GetKeyUp(KeyCode.Space);
+        bool travelStart = Input.GetKeyDown(KeyCode.LeftShift);
+        bool travelEnd = Input.GetKeyUp(KeyCode.LeftShift);
         bool collectLoot = Input.GetKeyDown(KeyCode.C);
         bool dropLoot = Input.GetKeyDown(KeyCode.V);
         bool interact = Input.GetKeyDown(KeyCode.F);
 
-        movement.move(mousePos, rotL, rotR, vertical, horizontal, spaceDown, spaceUp);
+        movement.move(mousePos, rotL, rotR, vertical, horizontal, chargePrep, charge, travelStart, travelEnd);
         actions.action(collectLoot, dropLoot, interact);
         if (zoom != 0)
             fCamera.zoom(zoom);

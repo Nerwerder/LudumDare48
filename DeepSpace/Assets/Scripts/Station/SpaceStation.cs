@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Assertions;
 
 public class SpaceStation : MonoBehaviour
@@ -10,6 +10,10 @@ public class SpaceStation : MonoBehaviour
     PlayerMovement pMovement;
 
     public bool enableFreeUpgrades = false;
+
+    public Button repairButton;
+    public Button reFuelButton;
+    public Button storeMetalButton;
 
     public struct UpgradeLevel
     {
@@ -23,15 +27,26 @@ public class SpaceStation : MonoBehaviour
         }
     }
 
+    private void updateButtonText(Button b, List<UpgradeLevel> l, int i, string name) {
+        var t = b.GetComponentInChildren<Text>();
+        Assert.IsNotNull(t);
+        if ((i+1) < l.Count)
+            t.text = string.Format("lvl {0} - {1} - {2}", l[i].mLevel, name, l[i+1].mCost);
+        else
+            t.text = string.Format("lvl {0} - {1} - max", l[i].mLevel, name);
+    }
+
     //UPGRADE FUEL
     [Range(0,3)]
     public int startFuelLevel = 1;
+    public Button fuelUpgradeButton;
     int mCurFuelLevel;
     int curFuelLevel {
         set {
             mCurFuelLevel = value;
             pState.maxFuel = fuelLevels[mCurFuelLevel].mValue;
             pState.fuel = pState.maxFuel;
+            updateButtonText(fuelUpgradeButton, fuelLevels, mCurFuelLevel, "Fuel Capacity");
         }
         get { return mCurFuelLevel; }
     }
@@ -44,11 +59,13 @@ public class SpaceStation : MonoBehaviour
     //UPGRADE SHIELD
     [Range(0, 3)]
     public int startShieldLevel = 0;
+    public Button shieldUpgradeButton;
     int mCurShieldLevel;
     int curShieldLevel {
         set {
             mCurShieldLevel = value;
             pState.maxShieldPoints = shieldLevels[mCurShieldLevel].mValue;
+            updateButtonText(shieldUpgradeButton, shieldLevels, mCurShieldLevel, "Shield");
         }
         get { return mCurShieldLevel; }
     }
@@ -61,11 +78,13 @@ public class SpaceStation : MonoBehaviour
     //UPGRADE CARGO
     [Range(0, 3)]
     public int startCargoLevel = 1;
+    public Button cargoUpgradeButton;
     int mCurCargoLevel;
     int curCargoLevel {
         set {
             mCurCargoLevel = value;
             pState.maxMetal = cargoLevels[mCurCargoLevel].mValue;
+            updateButtonText(cargoUpgradeButton, cargoLevels, mCurCargoLevel, "Cargo Capacity");
         }
         get { return mCurCargoLevel; }
     }
@@ -78,11 +97,13 @@ public class SpaceStation : MonoBehaviour
     //UPGRADE THRUSTER
     [Range(0, 3)]
     public int startThrusterLevel = 1;
+    public Button thrusterUpgradeButton;
     int mCurThrusterLevel = 0;
     int curThrusterLevel {
         set {
             mCurThrusterLevel = value;
             pMovement.movementForceForward = thrusterLevel[mCurThrusterLevel].mValue;
+            updateButtonText(thrusterUpgradeButton, thrusterLevel, mCurThrusterLevel, "Thrusters");
         }
         get { return mCurThrusterLevel; }
     }
@@ -94,10 +115,11 @@ public class SpaceStation : MonoBehaviour
 
     //RESOURCES
     int mMetal;
+    public Text metalText;
     public int metal {
         set {
             mMetal = value;
-            sGui.updateText();
+            metalText.text = string.Format("Metal:  {0,3}", mMetal);
         }
         get { return mMetal; }
     }
@@ -106,6 +128,15 @@ public class SpaceStation : MonoBehaviour
         sGui = GetComponent<SpaceStationGui>();
         pState = FindObjectOfType<PlayerState>();
         pMovement = FindObjectOfType<PlayerMovement>();
+
+        //Assign Buttons
+        repairButton.onClick.AddListener(repairShip);
+        reFuelButton.onClick.AddListener(refuelShip);
+        storeMetalButton.onClick.AddListener(storeMetal);
+        fuelUpgradeButton.onClick.AddListener(upgradeFuelCapacity);
+        shieldUpgradeButton.onClick.AddListener(upgradeShield);
+        cargoUpgradeButton.onClick.AddListener(upgradeCargoCapacity);
+        thrusterUpgradeButton.onClick.AddListener(upgradeThrusters);
 
         //Init
         curFuelLevel = startFuelLevel;

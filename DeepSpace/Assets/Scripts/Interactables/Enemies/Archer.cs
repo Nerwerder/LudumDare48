@@ -45,6 +45,9 @@ public class Archer : Enemy
 
     void Update()
     {
+        if (!isActive())
+            return;
+
         turnToTaget();
         waponCoolDownTimer += Time.deltaTime;
         var tDis = Vector2.Distance((Vector2)target.position, (Vector2)transform.position);

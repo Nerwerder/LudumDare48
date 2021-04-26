@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf42de1388b7a44bb6c57e6c0e72ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetDifficulty: 5
-  spawnMinCoolDown: 1
-  spawnMaxCoolDown: 15
+  targetDifficulty: 300
+  spawnMinCoolDown: 0.01
+  spawnMaxCoolDown: 0.02
   spawnableEnemies:
   - {fileID: 4218018515450487248, guid: 7de34ef9c2bca1b41bb4ebff24b0bf8c, type: 3}
   - {fileID: 443601893179726385, guid: ecb2d71f882a309419443d3da7508992, type: 3}

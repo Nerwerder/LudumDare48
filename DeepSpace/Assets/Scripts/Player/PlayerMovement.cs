@@ -20,7 +20,12 @@ public class PlayerMovement : MonoBehaviour
     public float chargeForceMultiplier = 7f;
     public float chargeDuration = 0.2f;
     public float chargeCoolDown = 0.5f;
+    public float chargeRotationDivider = 4f;
     public int chargeFuelCost = 7;
+
+    public float travelModeForceMultiplier = 2f;
+    public int travelModeSecondsPerFuel = 4;
+    public float travelRotationDivider = 2f;
 
     private float chargePrepTimer = 0f;
     private float chargeTimer = 0f;
@@ -57,12 +62,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void move(Vector3 mousePos, bool left, bool right, float forward, float sideways, bool chStart, bool chEnd) {
+    public void move(Vector3 mousePos, bool left, bool right, float forward, float sideways, bool chStart, bool chEnd, bool tStart, bool tEnd) {
         if (rotateTowardsMouse)
             rotate(mousePos);
         else
             rotate(left, right);
         checkChargeState(chStart, chEnd);
+        checkTravelState(tStart, tEnd);
         move(forward, sideways);
     }
 
@@ -81,7 +87,16 @@ public class PlayerMovement : MonoBehaviour
     private void rotateTo(Vector3 tDir) {
         float angle = Mathf.Atan2(tDir.y, tDir.x) * Mathf.Rad2Deg;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rot, (rotationSpeed * Time.deltaTime));
+        float rotSpeed = rotationSpeed;
+        switch(state.movementState) {
+            case PlayerState.MovementState.charge:
+                rotSpeed = rotationSpeed / chargeRotationDivider;
+                break;
+            case PlayerState.MovementState.travel:
+                rotSpeed = rotationSpeed / travelRotationDivider;
+                break;
+        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, (rotSpeed * Time.deltaTime));
     }    
 
     public void checkChargeState(bool start, bool end) {
@@ -103,6 +118,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void checkTravelState(bool start, bool end) {
+        //TODO
+    }
+
     public void move(float forward, float sideways) {
         switch (state.movementState) {
             case PlayerState.MovementState.charge:
@@ -112,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 rb.AddForce((Vector2)transform.right * Time.deltaTime * movementForceForward * chargeForceMultiplier);
                 break;
+            case PlayerState.MovementState.travel:
             case PlayerState.MovementState.idle:
             case PlayerState.MovementState.moving_forwards:
             case PlayerState.MovementState.moving_backwards:
