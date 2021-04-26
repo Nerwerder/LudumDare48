@@ -482,7 +482,7 @@ Transform:
   - {fileID: 599329454}
   - {fileID: 14390520}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &599329453
 PrefabInstance:
@@ -913,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 617731539462555674, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 617731539462555674, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1051,6 +1051,22 @@ PrefabInstance:
     - target: {fileID: 1477538203584301525, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477538203584301527, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477538203584301527, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477538203584301527, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477538203584301527, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
