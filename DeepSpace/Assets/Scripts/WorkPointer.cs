@@ -68,6 +68,8 @@ public class WorkPointer : MonoBehaviour
 
         foreach (GameObject cluster in clusters)
         {
+            if (cluster.GetComponent<Spawner>().currentObjects.Count == 0)
+                continue;
             float distance = Vector3.Distance(transform.position, cluster.transform.position);
             if (distance < currentDistance)
             {
