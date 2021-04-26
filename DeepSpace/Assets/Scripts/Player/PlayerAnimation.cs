@@ -8,7 +8,7 @@ public class PlayerAnimation : MonoBehaviour
     public List<ParticleSystem> chargeBackwardsEngines = new List<ParticleSystem>();
     public List<ParticleSystem> forwardsEngines = new List<ParticleSystem>();
     public List<GameObject> fuelGaugeSprites = new List<GameObject>();
-
+    public GameObject shield;
 
     void Start()
     {
@@ -23,6 +23,14 @@ public class PlayerAnimation : MonoBehaviour
         foreach (var s in system) {
             var emission = s.emission;
             emission.enabled = e;
+        }
+    }
+
+    public void updateShieldState(int sl) {
+        if(sl > 0) {
+            shield.SetActive(true);
+        } else {
+            shield.SetActive(false);
         }
     }
 

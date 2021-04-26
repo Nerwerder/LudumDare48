@@ -25,6 +25,7 @@ public class PlayerState : MonoBehaviour
         set {
             mShieldPoints = Mathf.Max(value, 0);
             pGui.updateText();
+            pAnimation.updateShieldState(mShieldPoints);
         }
         get { return mShieldPoints; }
     }
