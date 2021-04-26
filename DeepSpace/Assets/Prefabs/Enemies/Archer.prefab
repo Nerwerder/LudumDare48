@@ -155,7 +155,7 @@ MonoBehaviour:
   movementForce: 400
   collisionDamage: 1
   destroyedAfterCollision: 0
-  activationRange: 100
+  activationRange: 110
   active: 0
   destroyAnim: {fileID: 245144246084838184, guid: dd7929a61b67879418e0bf04d5aa83c7, type: 3}
   weapon: {fileID: 1377312667}

@@ -79,7 +79,7 @@ public class PlayerState : MonoBehaviour
     }
 
     public bool addMetal(int v) {
-        if((metal+v) < maxMetal) {
+        if((metal+v) <= maxMetal) {
             metal += v;
             return true;
         }

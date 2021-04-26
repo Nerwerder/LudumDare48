@@ -60,7 +60,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 45
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -98,5 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   smoothSpeed: 5
-  zoomFactor: 7
+  zoomFactor: 20
+  maxZoom: 5000
+  minZoom: 10
   offset: {x: 0, y: 0, z: -10}

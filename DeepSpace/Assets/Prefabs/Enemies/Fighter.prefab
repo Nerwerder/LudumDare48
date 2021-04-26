@@ -124,7 +124,7 @@ MonoBehaviour:
   movementForce: 900
   collisionDamage: 2
   destroyedAfterCollision: 1
-  activationRange: 100
+  activationRange: 120
   active: 0
   destroyAnim: {fileID: 245144246084838184, guid: dd7929a61b67879418e0bf04d5aa83c7, type: 3}
 --- !u!70 &5511985156542083374
