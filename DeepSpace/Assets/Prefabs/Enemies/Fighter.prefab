@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: 1
   rotationSpeed: 4
-  movementForce: 800
+  movementForce: 900
   collisionDamage: 2
   destroyedAfterCollision: 1
   activationRange: 100

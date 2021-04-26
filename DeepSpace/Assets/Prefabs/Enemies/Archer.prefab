@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: 1
   rotationSpeed: 5
-  movementForce: 300
+  movementForce: 430
   collisionDamage: 1
   destroyedAfterCollision: 0
   activationRange: 100
@@ -162,7 +162,7 @@ MonoBehaviour:
   minWeaponCoolDown: 0.8
   maxWeaponCoolDown: 1.7
   weaponRange: 80
-  bulletSpeed: 20
+  bulletSpeed: 25
   bulletDamage: 1
   bulletPrefab: {fileID: 8504931722174101798, guid: 9b128ff87328d8f4d85bf54cf25bd1f9, type: 3}
   bulletParentPrefab: {fileID: 5558138563797586324, guid: 1b245a23c45642543a907c386d4fb67b, type: 3}
