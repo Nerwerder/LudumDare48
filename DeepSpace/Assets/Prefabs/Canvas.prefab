@@ -84,18 +84,20 @@ MonoBehaviour:
 
     Left Shift: Fast movement
 
-    Spacebar:
-    Charge to crush enemeys and asteroids
+    Space:
+    Charge to crush enemies and asteroids
 
-    C: Collect metal fragements
+    C: Collect metal fragments
 
     F:
     Open the spacestation menu when near the station, press again to close
 
-    ESC:
-    Close the game
+    Mouse
+    wheel: Zoom
 
-    H: Toggle this Info panel
+    ESC: Close the game
+
+    H: Toggle this info panel
 
 
 '
