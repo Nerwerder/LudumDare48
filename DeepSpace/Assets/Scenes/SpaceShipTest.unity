@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: stationMenu
       value: 
       objectReference: {fileID: 114455546}
+    - target: {fileID: 4167105703735408657, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
+      propertyPath: enableFreeUpgrades
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5201862521964901913, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
       propertyPath: m_Name
       value: SpaceStation
@@ -278,6 +282,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1344764455172400458, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
+      propertyPath: shieldRecoveryTime
+      value: 2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6763075400988580680, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
       propertyPath: m_Name
       value: Player

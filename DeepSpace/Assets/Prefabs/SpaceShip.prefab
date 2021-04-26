@@ -39642,7 +39642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mHullPoints: 10
   maxHullPoints: 10
-  shieldRecoveryTime: 0.5
+  shieldRecoveryTime: 2.3
 --- !u!114 &6763075400988580684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39714,6 +39714,7 @@ MonoBehaviour:
   - {fileID: 454500712}
   - {fileID: 648457308}
   - {fileID: 1287794955}
+  shield: {fileID: 1332221161204903379}
 --- !u!114 &4777555222640369726
 MonoBehaviour:
   m_ObjectHideFlags: 0
