@@ -136,6 +136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bb4732f91000c4f88bcec6b570a21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableFreeUpgrades: 0
+  startFuelLevel: 1
+  startShieldLevel: 0
+  startCargoLevel: 1
+  startThrusterLevel: 1
 --- !u!114 &597658276
 MonoBehaviour:
   m_ObjectHideFlags: 0

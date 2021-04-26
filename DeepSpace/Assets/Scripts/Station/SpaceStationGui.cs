@@ -5,25 +5,41 @@ using UnityEngine.Assertions;
 public class SpaceStationGui : MonoBehaviour
 {
     SpaceStation sStation;
-    Text metalText = null;
     Transform player;
     public GameObject stationMenu = null;
     public float disableGuiDistance = 50f;
 
+    const string backgroundPath = "Canvas/StationMenu/Backgound/";
+    const string upgradePath = backgroundPath + "ShipUpgrades/";
+    Text metalText;
+    Text fuelUpgradeButtonText;
+    Text shieldUpgradeButtonText;
+    Text cargoUpgradeButtonText;
+    Text thrusterUpgradeButtonText;
+
+    private Text getText(string path) {
+        var e = GameObject.Find(path);
+        Assert.IsNotNull(e);
+        var t = e.GetComponent<Text>();
+        Assert.IsNotNull(t);
+        return t;
+    }
+
     void Start() {
         sStation = GetComponent<SpaceStation>();
-        Assert.IsNotNull(sStation);
-        Assert.IsNotNull(stationMenu);
-
         var pc = FindObjectOfType<PlayerController>();
         Assert.IsNotNull(pc);
         player = pc.transform;
+        Assert.IsNotNull(sStation);
+        Assert.IsNotNull(stationMenu);
 
         //Text Gui
-        var metal = GameObject.Find("Canvas/StationStatus/Metal");
-        Assert.IsNotNull(metal);
-        metalText = metal.GetComponent<Text>();
-        Assert.IsNotNull(metalText);
+        metalText = getText(backgroundPath + "StationStatus/Metal");
+        fuelUpgradeButtonText = getText(upgradePath + "FuelCapacity/Text");
+        shieldUpgradeButtonText = getText(upgradePath + "Shield/Text");
+        cargoUpgradeButtonText = getText(upgradePath + "CargoCapacity/Text");
+        thrusterUpgradeButtonText = getText(upgradePath + "Thrusters/Text");
+
         updateText();
     }
 

@@ -8,11 +8,16 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool rotateTowardsMouse = true;
     public float rotationSpeed = 5f;
-    public float movementForceForward = 500f;
+    float mMovementForceForward = 0f;    //Set by SpaceStation (upgradable)
+    public float movementForceForward {
+        set { mMovementForceForward = value; }
+        get { return mMovementForceForward; }
+    }
+
     public float movementForceSideways = 300f;
 
     public float chargePrepTime = 0.1f;
-    public float chargeForce = 3000f;
+    public float chargeForceMultiplier = 7f;
     public float chargeDuration = 0.2f;
     public float chargeCoolDown = 0.5f;
     public int chargeFuelCost = 7;
@@ -22,7 +27,11 @@ public class PlayerMovement : MonoBehaviour
     private float chargeCoolDownTimer = 0f;
     private PlayerState state;
     private PlayerAnimation anim;
-    private Rigidbody2D rb;
+    private Rigidbody2D mRb;
+    public Rigidbody2D rb {
+        set { mRb = value; }
+        get { return mRb; }
+    }
 
     void Start()
     {
@@ -101,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
                     state.movementState = PlayerState.MovementState.idle;
                     chargeTimer = 0;
                 }
-                rb.AddForce((Vector2)transform.right * Time.deltaTime * chargeForce);
+                rb.AddForce((Vector2)transform.right * Time.deltaTime * movementForceForward * chargeForceMultiplier);
                 break;
             case PlayerState.MovementState.idle:
             case PlayerState.MovementState.moving_forwards:

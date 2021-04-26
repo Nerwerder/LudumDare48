@@ -5,6 +5,7 @@ public class Asteroid : Interactable
 {
     public int lifePoints = 2;
     public int collisionDamage = 1;
+    public float minDamageVelocity = 2f;
     public float collisionForce = 2;
     public float maxRotationSpeed = 45f;
     public GameObject lootPrefab;
@@ -31,7 +32,10 @@ public class Asteroid : Interactable
         Assert.IsTrue(other.CompareTag("Player"));
         PlayerState state = other.GetComponent<PlayerState>();
         Assert.IsNotNull(state);
-        state.takeDamage(collisionDamage);
+        PlayerMovement movement = other.GetComponent<PlayerMovement>();
+        if(movement.rb.velocity.magnitude > minDamageVelocity) {
+            state.takeDamage(collisionDamage);
+        }
         switch (state.movementState) {
             case PlayerState.MovementState.charge:
                 for (int k = 0; k < Random.Range(minLoot, maxLoot); ++k) {
@@ -43,7 +47,6 @@ public class Asteroid : Interactable
                 Destroy(gameObject);
                 break;
             default:
-                PlayerMovement movement = other.GetComponent<PlayerMovement>();
                 Assert.IsNotNull(movement);
                 movement.addExternalForce(collision.relativeVelocity * collisionForce);
                 break;

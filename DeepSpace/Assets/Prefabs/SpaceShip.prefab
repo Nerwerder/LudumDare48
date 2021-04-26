@@ -15245,7 +15245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3632306827090489000
 Transform:
   m_ObjectHideFlags: 0
@@ -39642,12 +39642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mHullPoints: 10
   maxHullPoints: 10
-  mShieldPoints: 0
-  maxShieldPoints: 5
-  mFuel: 100
-  maxFuel: 100
-  mMetal: 0
-  maxMetal: 100
+  shieldRecoveryTime: 0.5
 --- !u!114 &6763075400988580684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39662,12 +39657,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateTowardsMouse: 0
   rotationSpeed: 2
-  movementForceForward: 800
   movementForceSideways: 400
-  chargePrepTime: 0.3
-  chargeForce: 5000
-  chargeDuration: 1
-  chargeCoolDown: 0.5
+  chargePrepTime: 0
+  chargeForceMultiplier: 7
+  chargeDuration: 1.1
+  chargeCoolDown: 0
   chargeFuelCost: 7
 --- !u!114 &6140439834960962784
 MonoBehaviour:
@@ -39681,7 +39675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4433ae990418ad24e912897f805f0e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectCoolDown: 1
+  collectCoolDown: 0
   collectRange: 40
   dropOfRange: 60
   deliveryPrefab: {fileID: 5310252481642988393, guid: ab8a4ed6c384ff243a780e426e59db35, type: 3}

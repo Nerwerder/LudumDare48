@@ -6,7 +6,7 @@ public class PlayerState : MonoBehaviour
     PlayerAnimation pAnimation;
     PlayerGui pGui;
 
-    //Ship Values
+    //HULL
     public int mHullPoints = 10;
     public int hullPoints {
         set {
@@ -17,7 +17,10 @@ public class PlayerState : MonoBehaviour
     }
     public int maxHullPoints = 10;
 
-    public int mShieldPoints = 0;
+    //SHIELD
+    public float shieldRecoveryTime = 0.5f;
+    float shieldRecoveryTimer = 0;
+    int mShieldPoints = 0;
     public int shieldPoints {
         set {
             mShieldPoints = Mathf.Max(value, 0);
@@ -25,9 +28,18 @@ public class PlayerState : MonoBehaviour
         }
         get { return mShieldPoints; }
     }
-    public int maxShieldPoints = 5;
+    int mMaxShieldPoints;   //set by SpaceStation (upgradable)
+    public int maxShieldPoints {
+        set { 
+            mMaxShieldPoints = value;
+            pGui.updateText();
+        }
+        get { return mMaxShieldPoints; }
 
-    public int mFuel = 100;
+    }
+
+    //FUEL
+    int mFuel;
     public int fuel {
         set {
             mFuel = value;
@@ -36,9 +48,18 @@ public class PlayerState : MonoBehaviour
         }
         get { return mFuel; }
     }
-    public int maxFuel = 100;
+    int mMaxFuel;    //set by SpaceStation (upgradable)
+    public int maxFuel {
+        set {
+            mMaxFuel = value;
+            pGui.updateText();
+            //NOTE: upgrading maxFuel will not call updateFuelGauge because it is assumed that a upgrade willa llways include a refill
+        }
+        get { return mMaxFuel; }
+    }
 
-    public int mMetal = 0;
+    //CARGO
+    int mMetal = 0;
     public int metal {
         set {
             mMetal = value;
@@ -46,9 +67,16 @@ public class PlayerState : MonoBehaviour
         }
         get { return mMetal; }
     }
-    public int maxMetal = 100;
+    int mMaxMetal;  //set by SpaceStation (upgradable)
+    public int maxMetal {
+        set {
+            mMaxMetal = value;
+            pGui.updateText();
+        }
+        get { return mMaxMetal; }
+    }
 
-    //Ship State
+    //States
     public enum MovementState
     {
         undefined,
@@ -72,6 +100,16 @@ public class PlayerState : MonoBehaviour
         pAnimation = GetComponent<PlayerAnimation>();
         pGui = GetComponent<PlayerGui>();
         movementState = PlayerState.MovementState.idle;
+    }
+
+    private void Update() {
+        if((maxShieldPoints > 0) && (shieldPoints < maxShieldPoints)) {
+            shieldRecoveryTimer += Time.deltaTime;
+            if(shieldRecoveryTimer > shieldRecoveryTime) {
+                shieldPoints += 1;
+                shieldRecoveryTimer = 0f;
+            }
+        }
     }
 
     public bool takeDamage(int dmg) {
