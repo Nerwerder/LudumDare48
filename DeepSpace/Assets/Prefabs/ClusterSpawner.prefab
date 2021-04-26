@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnAmount: 16
-  spawnRadius: 150
+  spawnRadius: 100
   respawnDelay: 30
   spawnables:
   - {fileID: 2044267163917656094, guid: d3b52aad94fdd454f83f9e2ce52aad69, type: 3}

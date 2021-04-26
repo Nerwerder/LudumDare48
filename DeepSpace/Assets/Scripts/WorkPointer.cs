@@ -78,6 +78,9 @@ public class WorkPointer : MonoBehaviour
             }
         }
 
+        if (nearestCluster == null)
+            return Vector3.zero;
+
         return nearestCluster.transform.position;
     }
 }
