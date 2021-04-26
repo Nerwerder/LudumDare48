@@ -19,6 +19,7 @@ public class SpaceStationGui : MonoBehaviour
     private void Update() {
         if(stationMenu.activeSelf && (Vector3.Distance(player.position, transform.position) > disableGuiDistance)) {
             stationMenu.SetActive(false);
+            state.invulnerable = false;
         }
     }
 
