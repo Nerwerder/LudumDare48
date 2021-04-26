@@ -54,6 +54,9 @@ public class Spawner : MonoBehaviour
 
     void SpawnObjects()
     {
+        if (spawnAmount <= 4)
+            Destroy(this);
+
         for (int i = 0; i < spawnAmount; i++)
         {
 
@@ -72,6 +75,7 @@ public class Spawner : MonoBehaviour
             }
 
         }
+        spawnAmount /= 2;
         needsRespawn = false;
     }
 }

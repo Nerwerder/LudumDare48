@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3764008001878362371}
   m_Layer: 0
   m_Name: ClusterSpawner
-  m_TagString: Untagged
+  m_TagString: Cluster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719cb0ebde6bc344a9d5fe6a2794311e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAmount: 10
-  spawnRadius: 100
+  spawnAmount: 16
+  spawnRadius: 150
   respawnDelay: 30
   spawnables:
   - {fileID: 2044267163917656094, guid: d3b52aad94fdd454f83f9e2ce52aad69, type: 3}
