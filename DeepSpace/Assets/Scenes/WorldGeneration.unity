@@ -4631,30 +4631,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4685863, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
-      propertyPath: m_Text
-      value: 'Controls:
-
-        WASD: Movement
-
-        Left Shift: Fast Movement
-
-        Spacebar:
-        Charge to crush enemeys and asteroids
-
-        C: Collect Metal Fragements
-
-        F:
-        Open Spacestation Menu when near the station, press again to close
-
-        ESC:
-        Close the Game
-
-        H: Toggle this InfoPanel
-
-
-'
-      objectReference: {fileID: 0}
     - target: {fileID: 1477538203584301521, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
