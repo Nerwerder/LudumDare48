@@ -282,10 +282,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1344764455172400458, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
-      propertyPath: shieldRecoveryTime
-      value: 2.3
-      objectReference: {fileID: 0}
     - target: {fileID: 6763075400988580680, guid: b4a32df272c93654784b2e6ef21434fe, type: 3}
       propertyPath: m_Name
       value: Player
@@ -898,6 +894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 617731539462555673, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 617731539462555674, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -941,6 +941,18 @@ PrefabInstance:
     - target: {fileID: 617731539462555674, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617731539462555675, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
+      propertyPath: spawnMaxCoolDown
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 617731539462555675, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
+      propertyPath: spawnMinCoolDown
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 617731539462555675, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}
+      propertyPath: targetDifficulty
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbfc8b2c533db0344ae1d6691a2456a9, type: 3}

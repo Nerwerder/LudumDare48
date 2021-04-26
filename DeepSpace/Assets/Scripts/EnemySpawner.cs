@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
 
     Enemy getSpawnableEnemy() {
         //Get random Enemy
-        int index = Random.Range(0, spawnableEnemies.Count - 1);
+        int index = Random.Range(0, spawnableEnemies.Count);
         return spawnableEnemies[index];
     }
 
