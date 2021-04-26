@@ -410,6 +410,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 597658276, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
+      propertyPath: stationMenu
+      value: 
+      objectReference: {fileID: 1568907435}
     - target: {fileID: 5201862521964901913, guid: 81691763acf3c5c44abda3a31f2c5eaa, type: 3}
       propertyPath: m_Name
       value: SpaceStation
@@ -952,6 +956,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 695722660684060274, guid: 9228b512ab07839458d4ed70700ad256, type: 3}
   m_PrefabInstance: {fileID: 1024045011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1568907435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 896583323863925796, guid: c0dc7de424889414ca836ad910c280c1, type: 3}
+  m_PrefabInstance: {fileID: 1345776432}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1588445740
 GameObject:
