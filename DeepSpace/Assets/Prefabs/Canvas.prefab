@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 230}
+  m_SizeDelta: {x: 250, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4685864
 CanvasRenderer:
@@ -78,10 +78,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Controls:\nWASD: Movement\nLeft Shift: Fast Movement\nSpacebar: Charge
-    to crush enemeys and asteroids\nC: Collect Metal Fragements\nF: Open Spacestation
-    Menu \n\twhen near the station, \n\tpress again to close\nESC: Close the Game\nH:
-    Close the InfoPanel\n\n"
+  m_Text: 'Controls:
+
+    WASD: Movement
+
+    Left Shift: Fast movement
+
+    Spacebar:
+    Charge to crush enemeys and asteroids
+
+    C: Collect metal fragements
+
+    F:
+    Open the spacestation menu when near the station, press again to close
+
+    ESC:
+    Close the game
+
+    H: Toggle this Info panel
+
+
+'
 --- !u!1 &381454032
 GameObject:
   m_ObjectHideFlags: 0
