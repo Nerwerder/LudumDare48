@@ -14,8 +14,9 @@ public class PlayerActions : MonoBehaviour
 
     LootParent lootParent = null;
     public GameObject lootParentPrefab;
-    PlayerState state = null;
-    SpaceStation home = null;
+    SpaceStation sHome = null;
+    PlayerState pState = null;
+    PlayerAnimation pAnim;
 
     void Start() {
         lootParent = FindObjectOfType<LootParent>();
@@ -24,10 +25,12 @@ public class PlayerActions : MonoBehaviour
             lootParent = FindObjectOfType<LootParent>();
         }
         Assert.IsNotNull(lootParent);
-        home = FindObjectOfType<SpaceStation>();
-        Assert.IsNotNull(home);
-        state = GetComponent<PlayerState>();
-        Assert.IsNotNull(state);
+        sHome = FindObjectOfType<SpaceStation>();
+        Assert.IsNotNull(sHome);
+        pState = GetComponent<PlayerState>();
+        Assert.IsNotNull(pState);
+        pAnim = GetComponent<PlayerAnimation>();
+        Assert.IsNotNull(pAnim);
     }
 
     void Update() {
@@ -47,25 +50,26 @@ public class PlayerActions : MonoBehaviour
         if (collectCoolDownTimer >= collectCoolDown) {
             collectCoolDownTimer = 0f;
             lootParent.activateLootInDistance((Vector2)transform.position, collectRange);
+            pAnim.showPickUpRange();
         }
     }
 
     public void dropLoot() {
-        float td = Vector2.Distance((Vector2)home.transform.position, (Vector2)transform.position);
-        if ((td < dropOfRange) && (state.metal > 0)) {
-            for(var k = 0; k < state.metal; ++k) {
-                Vector3 dir = (home.transform.position-transform.position).normalized;
+        float td = Vector2.Distance((Vector2)sHome.transform.position, (Vector2)transform.position);
+        if ((td < dropOfRange) && (pState.metal > 0)) {
+            for(var k = 0; k < pState.metal; ++k) {
+                Vector3 dir = (sHome.transform.position-transform.position).normalized;
                 dir = Quaternion.Euler(0, 0, Random.Range(-60f, 60f)) * dir;
                 Instantiate(deliveryPrefab, transform.position + (dir.normalized * 5), Quaternion.identity, lootParent.transform);
             }
-            state.metal = 0;
+            pState.metal = 0;
         }
     }
 
     public void interact() {
         //Is the Space Station near?
-        if(Vector3.Distance(home.transform.position, transform.position) < spaceStationInteractionRange) {
-            home.interact();
+        if(Vector3.Distance(sHome.transform.position, transform.position) < spaceStationInteractionRange) {
+            sHome.interact();
         }
     }
 }

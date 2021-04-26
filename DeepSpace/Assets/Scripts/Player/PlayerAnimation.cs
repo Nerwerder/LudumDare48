@@ -11,14 +11,23 @@ public class PlayerAnimation : MonoBehaviour
     public List<GameObject> fuelGaugeSprites = new List<GameObject>();
     public GameObject mainShield;
     public GameObject invulnerableShield;
-
-    void Start()
-    {
-    }
+    public GameObject pickUpRangeVis;
+    public float pickUpRangeVisTime = 0.3f;
+    float pickUpRangeVisTimeTimer = 0f;
 
     void Update()
     {
-        //Nothing
+        if(pickUpRangeVis.activeSelf) {
+            pickUpRangeVisTimeTimer += Time.deltaTime;
+            if(pickUpRangeVisTimeTimer > pickUpRangeVisTime) {
+                pickUpRangeVis.SetActive(false);
+                pickUpRangeVisTimeTimer = 0f;
+            }
+        }
+    }
+
+    public void showPickUpRange() {
+        pickUpRangeVis.SetActive(true);
     }
 
     private void setStateForAll(List<ParticleSystem> system, bool e) {
