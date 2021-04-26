@@ -7,7 +7,6 @@ public class Asteroid : Interactable
     public int collisionDamage = 1;
     public float minDamageVelocity = 2f;
     public float collisionForce = 2;
-    public float maxRotationSpeed = 45f;
     public GameObject lootPrefab;
     public int minLoot = 3;
     public int maxLoot = 7;
@@ -16,13 +15,12 @@ public class Asteroid : Interactable
     public GameObject explosionPrefab;
 
     LootParent lootParent;
-    float rotationSpeed = 0f;
+
 
     void Start() {
         lootParent = FindObjectOfType<LootParent>();
         Assert.IsNotNull(lootPrefab);
         Assert.IsNotNull(lootParent);
-        rotationSpeed = Random.Range(-maxRotationSpeed, maxRotationSpeed);
     }
     public override void interact(GameObject other) {
         throw new System.NotImplementedException();
@@ -53,7 +51,4 @@ public class Asteroid : Interactable
         }
     }
 
-    private void Update() {
-        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-    }
 }
