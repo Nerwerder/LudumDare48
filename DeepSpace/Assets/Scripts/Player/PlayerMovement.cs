@@ -138,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.MovementState.idle:
             case PlayerState.MovementState.moving_forwards:
             case PlayerState.MovementState.moving_backwards:
-                if(travel)
+                if(travel && state.fuel > 0)
                     state.movementState = PlayerState.MovementState.travel;
                 break;
             case PlayerState.MovementState.travel:
