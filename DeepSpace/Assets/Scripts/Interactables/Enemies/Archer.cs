@@ -51,7 +51,8 @@ public class Archer : Enemy
         turnToTaget();
         waponCoolDownTimer += Time.deltaTime;
         var tDis = Vector2.Distance((Vector2)target.position, (Vector2)transform.position);
-        if ((tDis < weaponRange) && (waponCoolDownTimer >= curWeaponCoolDown) && (getAngleToTaget() < 5f)) {
+        var ang = getAngleToTaget();
+        if ((tDis < weaponRange) && (waponCoolDownTimer >= curWeaponCoolDown) && ((ang < 5f) || (ang > -5f))) {
             shoot();
             calcNewWeaponCoolDown();
         }
