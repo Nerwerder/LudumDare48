@@ -80,8 +80,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Controls:\nWASD: Movement\nLeft Shift: Fast Movement\nSpacebar: Charge
     to crush enemeys and asteroids\nC: Collect Metal Fragements\nF: Open Spacestation
-    Menu \n\twhen near the station, \n\tpress again to close\nESC: Close Menu/Close
-    Game\n\n"
+    Menu \n\twhen near the station, \n\tpress again to close\nESC: Close the Game\nH:
+    Close the InfoPanel\n\n"
 --- !u!1 &381454032
 GameObject:
   m_ObjectHideFlags: 0

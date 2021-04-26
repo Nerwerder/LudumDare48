@@ -170,7 +170,7 @@ public class SpaceStation : MonoBehaviour
     }
 
     private bool checkCostAndLevel(List<UpgradeLevel> list, int i) {
-        return (((i + 1) < list.Count) && ((metal > list[i+1].mCost) || (enableFreeUpgrades)));
+        return (((i + 1) < list.Count) && ((metal >= list[i+1].mCost) || (enableFreeUpgrades)));
     }
     private void pay(int price) {
         metal -= enableFreeUpgrades ? 0 : price;

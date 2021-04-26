@@ -159,10 +159,10 @@ MonoBehaviour:
   active: 0
   destroyAnim: {fileID: 245144246084838184, guid: dd7929a61b67879418e0bf04d5aa83c7, type: 3}
   weapon: {fileID: 1377312667}
-  minWeaponCoolDown: 0.8
-  maxWeaponCoolDown: 1.7
+  minWeaponCoolDown: 1.1
+  maxWeaponCoolDown: 2.1
   weaponRange: 80
-  bulletSpeed: 25
+  bulletSpeed: 23
   bulletDamage: 1
   bulletPrefab: {fileID: 8504931722174101798, guid: 9b128ff87328d8f4d85bf54cf25bd1f9, type: 3}
   bulletParentPrefab: {fileID: 5558138563797586324, guid: 1b245a23c45642543a907c386d4fb67b, type: 3}

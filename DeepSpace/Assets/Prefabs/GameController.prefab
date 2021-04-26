@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 0}
   exitButton: {fileID: 0}
+  helpPanel: {fileID: 0}
